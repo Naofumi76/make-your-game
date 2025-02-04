@@ -28,13 +28,48 @@ function updatePaddle() {
     let paddleWidth = paddle.offsetWidth
 
     // Check if the new position is within the game container boundaries
-    if (newLeft >= 0 && newLeft <= containerWidth - paddleWidth) {
+    if (newLeft >= paddleWidth/2 && newLeft <= containerWidth - paddleWidth/2) {
         paddle.style.left = newLeft + 'px'
+        console.log(paddle.style.left)
     }
     paddleVelocity *= 0.8
 
     requestAnimationFrame(updatePaddle)
 }
 
-// Start the game
-updatePaddle()
+function createBricks() {
+    const brickWidth = 50
+    const brickHeight = 20
+    const brickMargin = 0
+    const containerWidth = gameContainer.offsetWidth;
+
+    const containerHeight = gameContainer.offsetHeight;
+
+    const columns = Math.floor((containerWidth - brickMargin) / (brickWidth + brickMargin));
+    
+    // Calculate the maximum number of rows
+    const paddleSpaceHeight = 5 * (brickHeight + brickMargin); // Space for 5 bricks above paddle
+    const availableHeight = containerHeight - paddleSpaceHeight;
+    const maxRows = Math.floor(availableHeight / (brickHeight + brickMargin));
+    for (let i = 0; i < maxRows; i++) {
+        for (let j = 0; j < columns; j++) {
+            const brick = document.createElement('div')
+            brick.classList.add('brick')
+            brick.style.width = brickWidth + 'px'
+            brick.style.height = brickHeight + 'px'
+            brick.style.position = 'absolute'
+            brick.style.left = (j * (brickWidth + brickMargin) + brickMargin) + 'px'
+            brick.style.top = (i * (brickHeight + brickMargin) + brickMargin) + 'px'
+            gameContainer.appendChild(brick)
+        }
+    }
+}
+
+// Initialize the game
+function initGame() {
+    updatePaddle()
+    createBricks()
+}
+
+// Call initGame after the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', initGame)
