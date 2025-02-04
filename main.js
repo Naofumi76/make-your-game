@@ -1,11 +1,10 @@
+import { updateBallPosition, ball } from './ball.js';
+
 // Get the game container element
 const gameContainer = document.getElementById('gameContainer')
 
 // Get the paddle element
 const paddle = document.getElementById('paddle')
-
-// Get the ball element
-const ball = document.getElementById('ball')
 
 // Create the paddle velocity
 let paddleVelocity = 0
@@ -67,8 +66,9 @@ function createBricks() {
 
 // Initialize the game
 function initGame() {
-    updatePaddle()
-    createBricks()
+    updatePaddle();
+    updateBallPosition();
+    //createBricks();
 }
 
 // Call initGame after the DOM is fully loaded
