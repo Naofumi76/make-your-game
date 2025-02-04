@@ -1,4 +1,4 @@
-import { updateBallPosition, ball } from './ball.js';
+import { updateBallPosition,collideBallWithBricks, ball } from './ball.js';
 
 // Get the game container element
 const gameContainer = document.getElementById('gameContainer')
@@ -8,6 +8,8 @@ const paddle = document.getElementById('paddle')
 
 // Create the paddle velocity
 let paddleVelocity = 0
+
+export let bricks = [];
 
 // Add event listeners for keyboard input
 document.addEventListener('keydown', function(event) {
@@ -29,7 +31,7 @@ function updatePaddle() {
     // Check if the new position is within the game container boundaries
     if (newLeft >= paddleWidth/2 && newLeft <= containerWidth - paddleWidth/2) {
         paddle.style.left = newLeft + 'px'
-        console.log(paddle.style.left)
+        //console.log(paddle.style.left)
     }
     paddleVelocity *= 0.8
 
@@ -60,15 +62,33 @@ function createBricks() {
             brick.style.left = (j * (brickWidth + brickMargin) + brickMargin) + 'px'
             brick.style.top = (i * (brickHeight + brickMargin) + brickMargin) + 'px'
             gameContainer.appendChild(brick)
+            bricks.push(brick);
         }
     }
+}
+
+function createOneBrick(){
+    const brickWidth = 50
+    const brickHeight = 20
+    const brickMargin = 0
+
+    const brick = document.createElement('div')
+    brick.classList.add('brick')
+    brick.style.width = brickWidth + 'px'
+    brick.style.height = brickHeight + 'px'
+    brick.style.position = 'absolute'
+    brick.style.left = (8 * (brickWidth + brickMargin) + brickMargin) + 'px'
+    brick.style.top = (10 * (brickHeight + brickMargin) + brickMargin) + 'px'
+    gameContainer.appendChild(brick)
+    bricks.push(brick);
 }
 
 // Initialize the game
 function initGame() {
     updatePaddle();
     updateBallPosition();
-    //createBricks();
+    createBricks();
+    //createOneBrick();
 }
 
 // Call initGame after the DOM is fully loaded

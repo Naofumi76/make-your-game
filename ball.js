@@ -1,3 +1,5 @@
+import { bricks } from "./main.js";
+
 // Select the ball element
 export const ball = document.getElementById('ball');
 
@@ -21,11 +23,39 @@ export function updateBallPosition() {
         velocityY = -velocityY; // Reverse vertical direction
     }
 
+    collideBallWithBricks(ball);
+
     // Apply the new position
     ball.style.left = ballX + '%';
     ball.style.top = ballY + '%';
+
 }
 
+export function collideBallWithBricks(ball) {
+    const ballRect = ball.getBoundingClientRect(); // Get ball boundaries
+
+
+    bricks.forEach((brick, index) => {
+
+
+        const brickRect = brick.getBoundingClientRect(); // Get brick boundaries
+        //console.log(brickRect)
+        
+        if (
+            ballRect.left < brickRect.right &&
+            ballRect.right > brickRect.left &&
+            ballRect.top < brickRect.bottom &&
+            ballRect.bottom > brickRect.top
+
+        ) {
+            // Collision detected
+            velocityY = -velocityY; // Reverse vertical direction
+            brick.remove(); // Remove the brick from the DOM
+            bricks.splice(index, 1); // Remove brick from the array
+            // console.log('Collision detected');
+        }
+    });
+}
 
 
 // Update the ball's position every 10 milliseconds
