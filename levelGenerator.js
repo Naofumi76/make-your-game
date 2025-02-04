@@ -1,10 +1,15 @@
 const verbose = 1;
 
 const rowPatterns = [
+    [],
 	[3],              // Full row of 3 bricks (centered)
-	[3, "gap", 3],  // Three bricks, then a gap, then three bricks
+	[3, "gap-2", 3],  // Three bricks, then a gap, then three bricks
 	[4],              // Full row of 4 bricks
-	[5, "gap", 2],  // Five bricks, then a gap, then two bricks
+	[5, "gap-4", 2],  // Five bricks, then a gap, then two bricks
+    [15],
+    [],
+    [11],
+    [2],
 ];
 
 export function generateLevel(level) {
@@ -33,7 +38,9 @@ export function generateLevel(level) {
                         for (let i = 0; i < part; i++) {
                             let brick = document.createElement("div");
                             brick.classList.add("brick");
-
+                            brick.style.height = `${brickHeight}px`;
+                            brick.style.width = `${brickWidth}px`;
+                            brick.style.borderBlockColor = `black`;
                             // Assign a special class to random bricks (20% chance)
                             if (Math.random() > 0.8) brick.classList.add("special-brick");
 

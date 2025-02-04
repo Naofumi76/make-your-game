@@ -28,4 +28,9 @@
     height: 20px;
     background-color: green;
     position: absolute;
+    border: 0.5px solid black;
+}
+
+.special-brick{
+    background-color: chocolate;
 }
