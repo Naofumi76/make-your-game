@@ -12,15 +12,18 @@ const rowPatterns = [
     [2],
 ];
 
+export const bricks = [];
+
 export function generateLevel(level) {
 	if (verbose >= 1) console.log(`Generating level ${level}`);
 	const screenWidth = gameContainer.offsetWidth;
 	const brickWidth = 20
 	const brickHeight = 10
+
+    let totalBricks = rowPatterns.reduce((a, b) => a + b.filter(item => typeof item === "number").reduce((c, d) => c + d, 0), 0);
 	if (level === 1){
 		function generateBricks() {
             const container = document.getElementById("gameContainer");
-            container.innerHTML = ""; // Clear previous bricks
 
             rowPatterns.forEach((pattern, rowIndex) => {
                 let totalBricks = pattern.filter(item => typeof item === "number").reduce((a, b) => a + b, 0);
@@ -47,6 +50,7 @@ export function generateLevel(level) {
                             brick.style.transform = `translateX(${x}px)`;
                             rowDiv.appendChild(brick);
                             x += brickWidth;
+                            bricks.push(brick);
                         }
                     } else if (part.startsWith("gap-")) {
                         let gapSize = parseInt(part.split("-")[1], 10);
