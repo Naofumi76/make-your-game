@@ -1,5 +1,10 @@
+import {addScore, updateScore, resetScore} from './score.js'
+import {pauseMenu } from './pausemenu.js'
+import {addTimer, timerClock, resetTimer} from './timer.js'
+import {isPaused, setGameInterval} from './utils.js'
+
 // Get the game container element
-const gameContainer = document.getElementById('gameContainer')
+let gameContainer = document.getElementById('gameContainer')
 
 // Get the paddle element
 let paddle = document.getElementById('paddle')
@@ -14,8 +19,6 @@ let cleanupPauseMenu
 // Create the paddle velocity
 let paddleVelocity = 0
 
-// Pause menu status
-let isPaused = false
 
 // Add event listeners for keyboard input
 document.addEventListener('keydown', function(event) {
@@ -54,7 +57,7 @@ function createBricks() {
     const containerHeight = gameContainer.offsetHeight;
 
     const columns = Math.floor((containerWidth - brickMargin) / (brickWidth + brickMargin));
-    
+
     // Calculate the maximum number of rows
     const paddleSpaceHeight = 5 * (brickHeight + brickMargin); // Space for 5 bricks above paddle
     const availableHeight = containerHeight - paddleSpaceHeight;
@@ -73,89 +76,6 @@ function createBricks() {
     }
 }
 
-function pauseMenu() {
-    let pauseOverlay
-    let menuContainer
-    let escapeKeyListener
-
-    function createPauseMenu() {
-        // Create overlay
-        pauseOverlay = document.createElement('div')
-        pauseOverlay.id = 'pauseOverlay'
-
-        // Create menu container
-        menuContainer = document.createElement('div')
-        menuContainer.id = 'menuContainer'
-
-        // Create menu options
-        const continueButton = document.createElement('button')
-        continueButton.textContent = 'Continue'
-        continueButton.addEventListener('click', resumeGame)
-
-        const restartButton = document.createElement('button')
-        restartButton.textContent = 'Restart'
-        restartButton.addEventListener('click', restartGame)
-
-        menuContainer.appendChild(continueButton)
-        menuContainer.appendChild(document.createElement('br'))
-        menuContainer.appendChild(document.createElement('br'))
-        menuContainer.appendChild(restartButton)
-
-        pauseOverlay.appendChild(menuContainer)
-        gameContainer.appendChild(pauseOverlay)
-    }
-
-    function showPauseMenu() {
-        isPaused = true
-        pauseOverlay.style.display = 'block'
-        gameContainer.classList.add('blurred')
-        cancelAnimationFrame(gameInterval)
-    }
-
-    function hidePauseMenu() {
-        isPaused = false
-        pauseOverlay.style.display = 'none'
-        gameContainer.classList.remove('blurred')
-        gameInterval = requestAnimationFrame(update)
-    }
-
-    function resumeGame() {
-        hidePauseMenu()
-    }
-
-    function restartGame() {
-        hidePauseMenu()
-        gameContainer.innerHTML = ''
-        paddleVelocity = 0
-        initGame()
-    }
-
-    function handleEscapeKey(event) {
-        if (event.key === 'Escape') {
-            if (isPaused) {
-                hidePauseMenu()
-            } else {
-                showPauseMenu()
-            }
-        }
-    }
-
-    createPauseMenu()
-
-    // Remove the old event listener if it exists
-    if (escapeKeyListener) {
-        document.removeEventListener('keydown', escapeKeyListener)
-    }
-
-    // Add the new event listener
-    escapeKeyListener = handleEscapeKey
-    document.addEventListener('keydown', escapeKeyListener)
-
-    // Return a function to remove the event listener
-    return function cleanup() {
-        document.removeEventListener('keydown', escapeKeyListener)
-    }
-}
 
 
 function createPaddle() {
@@ -170,11 +90,19 @@ function createBall() {
     gameContainer.appendChild(ball)
 }
 
-function update() {    
-    gameInterval = requestAnimationFrame(update)
+// Export the update function
+export function update() {
+    setGameInterval(requestAnimationFrame(update));
 }
+
 // Initialize the game
 function initGame() {
+    gameContainer = document.createElement('div')
+    gameContainer.id = 'gameContainer'
+    document.body.appendChild(gameContainer)
+    addScore()
+    addTimer()
+    timerClock()
     createBall()
     createPaddle()
     createBricks()
@@ -185,7 +113,7 @@ function initGame() {
     paddle = document.getElementById('paddle')
     ball = document.getElementById('ball')
     updatePaddle()
-    gameInterval = requestAnimationFrame(update)
+    setGameInterval(requestAnimationFrame(update));
 }
 
 // Call initGame after the DOM is fully loaded
