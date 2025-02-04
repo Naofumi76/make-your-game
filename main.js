@@ -1,3 +1,5 @@
+import { generateLevel } from "./levelGenerator.js"
+
 // Get the game container element
 const gameContainer = document.getElementById('gameContainer')
 
@@ -31,3 +33,5 @@ document.addEventListener('keydown', function(event) {
 
     }
 })
+
+generateLevel(1)
