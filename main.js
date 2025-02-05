@@ -1,9 +1,9 @@
-import { generateLevel } from "./levelGenerator.js"
-import { updateBallPosition, collideBallWithBricks, ball } from './ball.js';
-import {addScore, updateScore} from './score.js'
-import {pauseMenu } from './pausemenu.js'
-import {addTimer, timerClock} from './timer.js'
-import {isPaused, setGameInterval} from './utils.js'
+import { generateLevel } from "./internal/entities/levelGenerator.js"
+import { updateBallPosition, collideBallWithBricks, ball } from './internal/entities/ball.js';
+import {addScore, updateScore} from './internal/game/score.js'
+import {pauseMenu } from './internal/utils/pausemenu.js'
+import {addTimer, timerClock} from './internal/game/timer.js'
+import {isPaused, setGameInterval} from './internal/utils/utils.js'
 
 // Get the game container element
 let gameContainer = document.getElementById('gameContainer')

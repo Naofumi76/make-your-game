@@ -1,6 +1,6 @@
 import { gameInterval, setGameInterval, update } from './utils.js';
-import { resetTimer } from './timer.js';
-import { resetScore } from './score.js';
+import { resetTimer } from '../game/timer.js';
+import { resetScore } from '../game/score.js';
 import { setIsPaused } from './utils.js';
 import { isPaused } from './utils.js';
 
