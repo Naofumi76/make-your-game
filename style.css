@@ -53,3 +53,74 @@ html, body {
 .special-brick{
     background-color: chocolate;
 }
+
+/* Pause Overlay (Dark Background) */
+#pauseOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+/* Pause Menu Container */
+#menuContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Blurred Effect on Pause */
+.blurred {
+    opacity: 0.5;
+}
+
+/* Buttons */
+#menuContainer button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+/* Continue Button */
+#menuContainer button:first-child {
+    background-color: green;
+    color: white;
+}
+
+/* Restart Button */
+#menuContainer button:last-child {
+    background-color: red;
+    color: white;
+}
+
+#scoreDisplay, #timerDisplay {
+    position: absolute;
+    top: 20%;
+    transform: translateX(-50%); /* Centers it horizontally */
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+#scoreDisplay {
+    left: 40%;
+}
+
+#timerDisplay {
+    left: 60%;
+}
