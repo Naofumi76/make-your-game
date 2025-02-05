@@ -2,7 +2,7 @@
 	"levels": [
 		{
 			"level": 1,
-			"gridSize": { "rows": 30, "columns": 40 },
+			"gridSize": { "rows": 20, "columns": 20 },
 			"rowPattern": [
 				[],
 				[3],
