@@ -37,6 +37,14 @@ export function pauseMenu() {
         gameContainer.appendChild(pauseOverlay)
     }
 
+	function pauseMenuButton() {
+		var pauseButton = document.createElement('button')
+		pauseButton.id = 'pauseButton'
+		pauseButton.textContent = 'Pause'
+		pauseButton.addEventListener('click', handlePauseButton)
+		document.body.appendChild(pauseButton)
+	}
+
     function showPauseMenu() {
         setIsPaused(true)
         pauseOverlay.style.display = 'block'
@@ -75,7 +83,16 @@ export function pauseMenu() {
         }
     }
 
+	function handlePauseButton() {
+		if (isPaused) {
+            hidePauseMenu()
+        } else {
+            showPauseMenu()
+        }
+	}
+
     createPauseMenu()
+	pauseMenuButton()
 
     // Remove the old event listener if it exists
     if (escapeKeyListener) {

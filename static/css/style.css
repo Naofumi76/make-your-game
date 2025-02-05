@@ -104,7 +104,7 @@ html, body {
     color: white;
 }
 
-#scoreDisplay, #timerDisplay {
+#scoreDisplay, #timerDisplay, #pauseButton {
     position: absolute;
     top: 20%;
     transform: translateX(-50%); /* Centers it horizontally */
@@ -123,4 +123,9 @@ html, body {
 
 #timerDisplay {
     left: 60%;
+}
+
+#pauseButton {
+	left: 50%;
+	background: rgb(248, 117, 117);
 }

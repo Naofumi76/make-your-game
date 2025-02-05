@@ -1,4 +1,6 @@
-let timer = 500
+import { isPaused, setIsPaused } from "../utils/utils.js"
+
+let timer = 5
 let timerElement
 let timerInterval
 export function addTimer() {
@@ -16,12 +18,21 @@ export function timerClock() {
     clearInterval(timerInterval)
     
     timerInterval = setInterval(() => {
-        if (timer > 0) {
+        if (timer > 0 && !isPaused) {
             timer -= 1
             timerElement.textContent = `${timer}s`
-        } else {
+        } else if (timer === 0) {
             clearInterval(timerInterval)
-            alert("Game Over!")
+            var gameOver = document.createElement('div')
+			gameOver.textContent = 'Game Over!'
+			gameOver.style.fontSize = '48px'
+			gameOver.style.position = 'absolute'
+			gameOver.style.top = '50%'
+			gameOver.style.left = '50%'
+			gameOver.style.transform = 'translate(-50%, -50%)'
+			gameOver.style.color = "rgb(248, 0, 0)";
+			gameContainer.appendChild(gameOver)
+			setIsPaused(true)
         }
     }, 1000)
 }
