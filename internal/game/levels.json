@@ -1,0 +1,32 @@
+{
+	"levels": [
+		{
+			"level": 1,
+			"gridSize": { "rows": 20, "columns": 20 },
+			"rowPattern": [
+				[],
+				[3],
+				[3, "gap-2", 3],
+				[4],
+				[5, "gap-4", 2],
+				[15],
+				[],
+				[11],
+				[2]
+			],
+			"specialTileChance": 20
+		},
+		{
+			"level": 2,
+			"gridSize": { "rows": 15, "columns": 20 },
+			"rowPattern": [
+				[5],
+				[4, "gap-2", 4],
+				[6],
+				[3, "gap-4", 3, "gap-2", 3],
+				[7, "gap-3", 2]
+			],
+			"specialTileChance": 30
+		}
+	]
+}

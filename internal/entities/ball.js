@@ -1,4 +1,5 @@
 import { bricks } from './levelGenerator.js';
+import { isPaused } from "../utils/utils.js";
 
 // Select the ball element
 export const ball = document.getElementById('ball');
@@ -12,9 +13,10 @@ let velocityY = -0.3; // Vertical velocity
 
 // Function to update the ball's position
 export function updateBallPosition() {
-    // Update position based on velocity
-    ballX += velocityX;
-    ballY += velocityY;
+	if (!isPaused) {
+		// Update position based on velocity
+		ballX += velocityX;
+		ballY += velocityY;
 
     // Check for collision with the walls
     if (ballX <= 0 || ballX >= 100) {
@@ -38,24 +40,27 @@ export function updateBallPosition() {
     ball.style.left = ballX + '%';
     ball.style.top = ballY + '%';
 
+	}
 }
 
 
 function collideBallWithBricks(ball) {
-    const ballRect = ball.getBoundingClientRect();
-
-    bricks.forEach((brick, index) => {
-        const brickRect = brick.getBoundingClientRect();
-
-        if (isColliding(ballRect, brickRect)) {
-            handleCollision(ballRect, brickRect);
-
-            if (!brick?.unbreakable) {
-                brick.remove();
-                bricks.splice(index, 1);
-            }
-        }
-    });
+	if (!isPaused) {
+		const ballRect = ball.getBoundingClientRect();
+	
+		bricks.forEach((brick, index) => {
+			const brickRect = brick.getBoundingClientRect();
+	
+			if (isColliding(ballRect, brickRect)) {
+				handleCollision(ballRect, brickRect);
+	
+				if (!brick?.unbreakable) {
+					brick.remove();
+					bricks.splice(index, 1);
+				}
+			}
+		});
+	}
 }
 
 // Check if the ball is colliding

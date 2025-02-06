@@ -1,110 +1,110 @@
 html, body {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    overflow: hidden; /* Prevent scrolling */
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	display: flex;
+	justify-content: center; /* Center horizontally */
+	align-items: center; /* Center vertically */
+	overflow: hidden; /* Prevent scrolling */
 }
 
 #gameContainer {
-    width: 60%;
-    height: 40%;
-    max-width: 800px;
-    max-height: 500px;
-    border: 1px solid black;
-    position: relative;
+	width: 60%;
+	height: 40%;
+	max-width: 800px;
+	max-height: 500px;
+	border: 1px solid black;
+	position: relative;
 }
 
 
 
 #paddle {
-    width: 15%;
-    max-width: 120px;
-    height: 10px;
-    background-color: blue;
-    position: absolute;
-    bottom: 3.5%;
-    left: 50%;
-    transform: translateX(-50%);
+	width: 15%;
+	max-width: 120px;
+	height: 10px;
+	background-color: blue;
+	position: absolute;
+	bottom: 3.5%;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 #ball {
-    width: 1.2%;
-    max-width: 10px;
-    height: 2.7%;
-    max-height: 10px;
-    background-color: red;
-    position: absolute;
-    top: 80%;
-    left: 50%;
-    transform: translateX(-50%);
+	width: 1.2%;
+	max-width: 10px;
+	height: 2.7%;
+	max-height: 10px;
+	background-color: red;
+	position: absolute;
+	top: 80%;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .brick {
-    width: 60px;
-    height: 20px;
-    background-color: green;
-    position: absolute;
-    border: 0.5px solid black;
+	width: 60px;
+	height: 20px;
+	background-color: green;
+	position: absolute;
+	border: 0.5px solid black;
 }
 
 .special-brick{
-    background-color: chocolate;
+	background-color: chocolate;
 }
 
 /* Pause Overlay (Dark Background) */
 #pauseOverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: none;
 }
 
 /* Pause Menu Container */
 #menuContainer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	text-align: center;
 }
 
 /* Blurred Effect on Pause */
 .blurred {
-    opacity: 0.5;
+	opacity: 0.5;
 }
 
 /* Buttons */
 #menuContainer button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin: 5px;
+	padding: 10px 20px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	margin: 5px;
 }
 
 /* Continue Button */
 #menuContainer button:first-child {
-    background-color: green;
-    color: white;
+	background-color: green;
+	color: white;
 }
 
 /* Restart Button */
 #menuContainer button:last-child {
-    background-color: red;
-    color: white;
+	background-color: red;
+	color: white;
 }
 
-#scoreDisplay, #timerDisplay {
+#scoreDisplay, #timerDisplay, #pauseButton {
     position: absolute;
     top: 20%;
     transform: translateX(-50%); /* Centers it horizontally */
@@ -118,9 +118,14 @@ html, body {
 }
 
 #scoreDisplay {
-    left: 40%;
+	left: 40%;
 }
 
 #timerDisplay {
-    left: 60%;
+	left: 60%;
+}
+
+#pauseButton {
+	left: 50%;
+	background: rgb(248, 117, 117);
 }
