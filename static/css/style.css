@@ -104,7 +104,7 @@ html, body {
 	color: white;
 }
 
-#scoreDisplay, #timerDisplay, #pauseButton {
+#scoreDisplay, #timerDisplay, #pauseButton, #livesDisplay{
     position: absolute;
     top: 20%;
     transform: translateX(-50%); /* Centers it horizontally */
@@ -125,7 +125,12 @@ html, body {
 	left: 60%;
 }
 
+#livesDisplay {
+	left: 50%;
+}
+
 #pauseButton {
 	left: 50%;
+	top: 25%;
 	background: rgb(248, 117, 117);
 }

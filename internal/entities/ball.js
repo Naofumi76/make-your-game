@@ -1,5 +1,6 @@
 import { bricks } from './levelGenerator.js';
 import { isPaused } from "../utils/utils.js";
+import { lives, updateLives, gameOver, isGameOver } from './lives.js';
 
 // Select the ball element
 export const ball = document.getElementById('ball');
@@ -26,11 +27,16 @@ export function updateBallPosition() {
         velocityY = -velocityY; // Reverse vertical direction
     }
 
+    // If the ball touch the botmon wall, reset the position
     if (ballY >= 100){
-        ballX = 50;
-        ballY = 80;
-        velocityX = 0.3;
-        velocityY = -0.3;
+
+        if (lives > 0) {
+            resetBallPosition()
+            updateLives();
+        } else if (!isGameOver) {
+            ball.remove();
+            gameOver();
+        }
 
     }
 
@@ -41,6 +47,13 @@ export function updateBallPosition() {
     ball.style.top = ballY + '%';
 
 	}
+}
+
+function resetBallPosition() {
+    ballX = 50;
+    ballY = 80;
+    velocityX = 0.3;
+    velocityY = -0.3;
 }
 
 
