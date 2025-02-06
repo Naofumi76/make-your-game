@@ -16,7 +16,7 @@ export function update() {
 }
 
 // Initialize the game
-function initGame() {
+async function initGame() {
 	addScore()
 	addTimer()
 	timerClock()
