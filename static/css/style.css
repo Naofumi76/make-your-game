@@ -104,17 +104,17 @@ html, body {
 	color: white;
 }
 
-#scoreDisplay, #timerDisplay {
-	position: absolute;
-	top: 20%;
-	transform: translateX(-50%); /* Centers it horizontally */
-	font-size: 20px;
-	font-family: Arial, sans-serif;
-	font-weight: bold;
-	color: white;
-	background: rgba(0, 0, 0, 0.5);
-	padding: 5px 15px;
-	border-radius: 5px;
+#scoreDisplay, #timerDisplay, #pauseButton {
+    position: absolute;
+    top: 20%;
+    transform: translateX(-50%); /* Centers it horizontally */
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 15px;
+    border-radius: 5px;
 }
 
 #scoreDisplay {
@@ -123,4 +123,9 @@ html, body {
 
 #timerDisplay {
 	left: 60%;
+}
+
+#pauseButton {
+	left: 50%;
+	background: rgb(248, 117, 117);
 }
