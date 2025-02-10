@@ -1,7 +1,5 @@
 
-
 export let lives = 0; 
-export let isGameOver = false;
 
 let livesElement;
 
@@ -31,13 +29,3 @@ export function resetLives() {
     }
 }
 
-
-
-export function gameOver() {
-
-    isGameOver = true;
-    alert("Game Over!");
-
-    // Optionally, reset the game or redirect to a game over screen
-    // For now, we'll just reset the lives and ball position
-}

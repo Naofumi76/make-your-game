@@ -1,6 +1,7 @@
 import { bricks } from './levelGenerator.js';
-import { isPaused } from "../utils/utils.js";
-import { lives, updateLives, gameOver, isGameOver } from './lives.js';
+import { isPaused,gameIsOver } from "../utils/utils.js";
+import { lives, updateLives } from './lives.js';
+import { gameOver } from '../game/gameOver.js';
 
 // Select the ball element
 export const ball = document.getElementById('ball');
@@ -33,7 +34,7 @@ export function updateBallPosition() {
         if (lives > 0) {
             resetBallPosition()
             updateLives();
-        } else if (!isGameOver) {
+        } else if (!gameIsOver) {
             ball.remove();
             gameOver();
         }

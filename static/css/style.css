@@ -55,7 +55,7 @@ html, body {
 }
 
 /* Pause Overlay (Dark Background) */
-#pauseOverlay {
+#pauseOverlay, #gameOverOverlay {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -66,7 +66,7 @@ html, body {
 }
 
 /* Pause Menu Container */
-#menuContainer {
+#menuContainer, #gameOverContainer {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -83,13 +83,18 @@ html, body {
 }
 
 /* Buttons */
-#menuContainer button {
+#menuContainer, #gameOverContainer button {
 	padding: 10px 20px;
 	font-size: 16px;
 	border: none;
 	cursor: pointer;
 	border-radius: 5px;
 	margin: 5px;
+}
+
+#gameOverContainer button{
+	background-color: rgb(199, 8, 8);
+    color: white;
 }
 
 /* Continue Button */

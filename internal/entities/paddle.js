@@ -1,7 +1,7 @@
 import {  pauseMenu } from "../utils/pausemenu.js"
 import { isPaused } from "../utils/utils.js"
 import { bricks } from "./levelGenerator.js"
-import { isGameOver } from "./lives.js"
+import { gameIsOver } from "../utils/utils.js";
 
 
 // Get the paddle element
@@ -17,7 +17,7 @@ let paddleVelocity = 0
 
 // Add event listeners for keyboard input
 document.addEventListener('keydown', function(event) {
-    if (!isPaused && !isGameOver) {
+    if (!isPaused && !gameIsOver) {
         if (event.key === 'ArrowLeft') {
             paddleVelocity -= 5
         } else if (event.key === 'ArrowRight') {
