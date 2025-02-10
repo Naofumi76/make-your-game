@@ -2,6 +2,7 @@ import { bricks } from './levelGenerator.js';
 import { isPaused,gameIsOver } from "../utils/utils.js";
 import { lives, updateLives } from './lives.js';
 import { gameOver } from '../game/gameOver.js';
+import { updateScore } from '../game/score.js';
 
 // Select the ball element
 export const ball = document.getElementById('ball');
@@ -68,6 +69,7 @@ function collideBallWithBricks(ball) {
 				handleCollision(ballRect, brickRect);
 	
 				if (!brick?.unbreakable) {
+					updateScore(100);
 					brick.remove();
 					bricks.splice(index, 1);
 				}

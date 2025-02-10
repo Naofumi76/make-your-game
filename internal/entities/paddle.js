@@ -28,6 +28,10 @@ document.addEventListener('keydown', function(event) {
 
 // Update the paddle position every frame
  export function updatePaddle() {
+	let gameContainer = document.getElementById('gameContainer')
+	if (!gameContainer){
+		return
+	}
     let newLeft = paddle.offsetLeft + paddleVelocity
 
     // Get the game container dimensions
@@ -40,5 +44,7 @@ document.addEventListener('keydown', function(event) {
     }
     paddleVelocity *= 0.8
 
-    requestAnimationFrame(updatePaddle)
+	if (!isPaused) {
+		requestAnimationFrame(updatePaddle)
+	}
 }
