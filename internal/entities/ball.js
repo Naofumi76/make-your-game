@@ -1,4 +1,4 @@
-import { bricks } from './levelGenerator.js';
+import { bricks, updateBrickColor } from './levelGenerator.js';
 import { isPaused,gameIsOver } from "../utils/utils.js";
 import { lives, updateLives } from './lives.js';
 import { gameOver } from '../game/gameOver.js';
@@ -20,13 +20,13 @@ export function updateBallPosition() {
 		ballX += velocityX;
 		ballY += velocityY;
 
-    // Check for collision with the walls
-    if (ballX <= 0 || ballX >= 100) {
-        velocityX = -velocityX; // Reverse horizontal direction
-    }
-    if (ballY <= 0) {
-        velocityY = -velocityY; // Reverse vertical direction
-    }
+	// Check for collision with the walls
+	if (ballX <= 0 || ballX >= 100) {
+		velocityX = -velocityX; // Reverse horizontal direction
+	}
+	if (ballY <= 0) {
+		velocityY = -velocityY; // Reverse vertical direction
+	}
 
     // If the ball touch the botmon wall, reset the position
     if (ballY >= 100){
@@ -39,13 +39,13 @@ export function updateBallPosition() {
             gameOver();
         }
 
-    }
+	}
 
-    collideBallWithBricks(ball);
+	collideBallWithBricks(ball);
 
-    // Apply the new position
-    ball.style.left = ballX + '%';
-    ball.style.top = ballY + '%';
+	// Apply the new position
+	ball.style.left = ballX + '%';
+	ball.style.top = ballY + '%';
 
 	}
 }
@@ -68,10 +68,18 @@ function collideBallWithBricks(ball) {
 			if (isColliding(ballRect, brickRect)) {
 				handleCollision(ballRect, brickRect);
 	
-				if (!brick?.unbreakable) {
-					updateScore(100);
-					brick.remove();
-					bricks.splice(index, 1);
+				let health = brick.getAttribute('health');
+				if (health > 0) {
+					health--;
+					if (health === 0 ) {
+						updateScore(100);
+						brick.remove();
+						bricks.splice(index, 1);
+					} else {
+						brick.setAttribute('health', health);
+						updateBrickColor(brick, health);
+					}
+					
 				}
 			}
 		});
@@ -80,39 +88,39 @@ function collideBallWithBricks(ball) {
 
 // Check if the ball is colliding
 function isColliding(ballRect, brickRect) {
-    return (
-        ballRect.left < brickRect.right &&
-        ballRect.right > brickRect.left &&
-        ballRect.top < brickRect.bottom &&
-        ballRect.bottom > brickRect.top
-    );
+	return (
+		ballRect.left < brickRect.right &&
+		ballRect.right > brickRect.left &&
+		ballRect.top < brickRect.bottom &&
+		ballRect.bottom > brickRect.top
+	);
 }
 
 // Handle bouncing
 function handleCollision(ballRect, brickRect) {
-    // Calculate the overlaps between the ball and the brick sides
-    const overlaps = {
-        left: Math.abs(ballRect.right - brickRect.left),
-        right: Math.abs(ballRect.left - brickRect.right),
-        top: Math.abs(ballRect.bottom - brickRect.top),
-        bottom: Math.abs(ballRect.top - brickRect.bottom),
-    };
+	// Calculate the overlaps between the ball and the brick sides
+	const overlaps = {
+		left: Math.abs(ballRect.right - brickRect.left),
+		right: Math.abs(ballRect.left - brickRect.right),
+		top: Math.abs(ballRect.bottom - brickRect.top),
+		bottom: Math.abs(ballRect.top - brickRect.bottom),
+	};
 
-    // Determine which side of the brick has the smallest overlap and apply the corresponding bounce
-    const minOverlapSide = Object.keys(overlaps).reduce((a, b) => overlaps[a] < overlaps[b] ? a : b);
+	// Determine which side of the brick has the smallest overlap and apply the corresponding bounce
+	const minOverlapSide = Object.keys(overlaps).reduce((a, b) => overlaps[a] < overlaps[b] ? a : b);
 
-    switch (minOverlapSide) {
-        case "left":
-        case "right":
-            velocityX = -velocityX;
-            ballX += minOverlapSide === "left" ? -2 : 2;
-            break;
-        case "top":
-        case "bottom":
-            velocityY = -velocityY;
-            ballY += minOverlapSide === "top" ? -2 : 2;
-            break;
-    }
+	switch (minOverlapSide) {
+		case "left":
+		case "right":
+			velocityX = -velocityX;
+			ballX += minOverlapSide === "left" ? -2 : 2;
+			break;
+		case "top":
+		case "bottom":
+			velocityY = -velocityY;
+			ballY += minOverlapSide === "top" ? -2 : 2;
+			break;
+	}
 }
 
 
