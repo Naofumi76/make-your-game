@@ -1,6 +1,6 @@
 
 
-export let lives = 2; 
+export let lives = 0; 
 export let isGameOver = false;
 
 let livesElement;
