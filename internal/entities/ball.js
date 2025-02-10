@@ -113,12 +113,12 @@ function handleCollision(ballRect, brickRect) {
 		case "left":
 		case "right":
 			velocityX = -velocityX;
-			ballX += minOverlapSide === "left" ? -2 : 2;
+			ballX += minOverlapSide === "left" ? -1 : 1;
 			break;
 		case "top":
 		case "bottom":
 			velocityY = -velocityY;
-			ballY += minOverlapSide === "top" ? -2 : 2;
+			ballY += minOverlapSide === "top" ? -1 : 1;
 			break;
 	}
 }

@@ -18,12 +18,20 @@ let paddleVelocity = 0
 document.addEventListener('keydown', function(event) {
     if (!isPaused && !gameIsOver) {
         if (event.key === 'ArrowLeft') {
-            paddleVelocity -= 5
+            paddleVelocity = -3
         } else if (event.key === 'ArrowRight') {
-            paddleVelocity += 5
+            paddleVelocity = 3
+        } else {
+            paddleVelocity = 0
         }
     }
 })
+
+document.addEventListener('keyup', function (event) {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        paddleVelocity = 0; // Arrête le mouvement
+    }
+});
 
 // Update the paddle position every frame
  export function updatePaddle() {
@@ -41,7 +49,7 @@ document.addEventListener('keydown', function(event) {
     if (newLeft >= paddleWidth/2 && newLeft <= containerWidth - paddleWidth/2) {
         paddle.style.left = newLeft + 'px'
     }
-    paddleVelocity *= 0.8
+    paddleVelocity *= 1
 	
 	requestAnimationFrame(updatePaddle)
 	
