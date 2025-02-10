@@ -1,6 +1,6 @@
-import {  pauseMenu } from "../utils/pausemenu.js"
 import { isPaused } from "../utils/utils.js"
 import { bricks } from "./levelGenerator.js"
+import { gameIsOver } from "../utils/utils.js";
 
 
 // Get the paddle element
@@ -16,17 +16,29 @@ let paddleVelocity = 0
 
 // Add event listeners for keyboard input
 document.addEventListener('keydown', function(event) {
-    if (!isPaused) {
+    if (!isPaused && !gameIsOver) {
         if (event.key === 'ArrowLeft') {
-            paddleVelocity -= 5
+            paddleVelocity = -3
         } else if (event.key === 'ArrowRight') {
-            paddleVelocity += 5
+            paddleVelocity = 3
+        } else {
+            paddleVelocity = 0
         }
     }
 })
 
+document.addEventListener('keyup', function (event) {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        paddleVelocity = 0; // Arrête le mouvement
+    }
+});
+
 // Update the paddle position every frame
  export function updatePaddle() {
+	let gameContainer = document.getElementById('gameContainer')
+	if (!gameContainer){
+		return
+	}
     let newLeft = paddle.offsetLeft + paddleVelocity
 
     // Get the game container dimensions
@@ -37,7 +49,8 @@ document.addEventListener('keydown', function(event) {
     if (newLeft >= paddleWidth/2 && newLeft <= containerWidth - paddleWidth/2) {
         paddle.style.left = newLeft + 'px'
     }
-    paddleVelocity *= 0.8
-
-    requestAnimationFrame(updatePaddle)
+    paddleVelocity *= 1
+	
+	requestAnimationFrame(updatePaddle)
+	
 }

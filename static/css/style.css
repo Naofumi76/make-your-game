@@ -43,19 +43,12 @@ html, body {
 }
 
 .brick {
-	width: 60px;
-	height: 20px;
-	background-color: green;
 	position: absolute;
 	border: 0.5px solid black;
 }
 
-.special-brick{
-	background-color: chocolate;
-}
-
 /* Pause Overlay (Dark Background) */
-#pauseOverlay {
+#pauseOverlay, #gameOverOverlay {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -66,7 +59,7 @@ html, body {
 }
 
 /* Pause Menu Container */
-#menuContainer {
+#menuContainer, #gameOverContainer {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -83,7 +76,7 @@ html, body {
 }
 
 /* Buttons */
-#menuContainer button {
+#menuContainer, #gameOverContainer button {
 	padding: 10px 20px;
 	font-size: 16px;
 	border: none;
@@ -92,19 +85,37 @@ html, body {
 	margin: 5px;
 }
 
+#gameOverContainer button{
+	background-color: rgb(199, 8, 8);
+    color: white;
+}
+
+/* Pause Text */
+#pauseExplain {
+	color:#ac9f9f;
+}
+
+
 /* Continue Button */
-#menuContainer button:first-child {
+#continueButton {
 	background-color: green;
 	color: white;
 }
 
-/* Restart Button */
-#menuContainer button:last-child {
+
+/* Restart Level Button */
+#restartLevelButton {
+    background-color: orange;
+    color: white;
+}
+
+/* Restart Game Button */
+#restartGameButton {
 	background-color: red;
 	color: white;
 }
 
-#scoreDisplay, #timerDisplay, #pauseButton {
+#scoreDisplay, #timerDisplay, #pauseButton, #livesDisplay{
     position: absolute;
     top: 20%;
     transform: translateX(-50%); /* Centers it horizontally */
@@ -125,7 +136,12 @@ html, body {
 	left: 60%;
 }
 
+#livesDisplay {
+	left: 50%;
+}
+
 #pauseButton {
 	left: 50%;
+	top: 25%;
 	background: rgb(248, 117, 117);
 }

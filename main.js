@@ -5,6 +5,8 @@ import {addScore, updateScore} from './internal/game/score.js'
 import {pauseMenu } from './internal/utils/pausemenu.js'
 import {addTimer, timerClock} from './internal/game/timer.js'
 import {isPaused, setGameInterval} from './internal/utils/utils.js'
+import { scoreboardButton } from "./internal/game/score.js";
+import { addLives } from "./internal/entities/lives.js";
 
 // Get the game container element
 let gameContainer = document.getElementById('gameContainer')
@@ -16,15 +18,17 @@ export function update() {
 }
 
 // Initialize the game
-function initGame() {
+async function initGame() {
+	scoreboardButton()
 	addScore()
 	addTimer()
+	addLives()
 	timerClock()
 	if (cleanupPauseMenu) {
 		cleanupPauseMenu() // Remove old pause menu listener if it exists
 	}
 	cleanupPauseMenu = pauseMenu() // Set up new pause menu and store the cleanup function
-	loadLevel(1)
+	loadLevel(2)
 	updatePaddle()
 	updateBallPosition();
 	

@@ -1,9 +1,16 @@
 export let isPaused = false;
+export let gameIsOver = false;
 export let gameInterval = null;
 
 // If you need to update these values from other files, you can create setter functions:
 export function setIsPaused(value) {
     isPaused = value;
+}
+
+export function setGameIsOver(value) {
+    console.log("value of game is over : ", gameIsOver);
+    gameIsOver = value;
+    console.log("new value of game is over : ", gameIsOver);
 }
 
 export function setGameInterval(value) {

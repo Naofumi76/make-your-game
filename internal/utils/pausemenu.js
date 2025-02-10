@@ -1,8 +1,6 @@
-import { gameInterval, setGameInterval, update } from './utils.js';
+import { gameInterval, setGameInterval, update, setIsPaused, isPaused } from './utils.js';
 import { resetTimer } from '../game/timer.js';
 import { resetScore } from '../game/score.js';
-import { setIsPaused } from './utils.js';
-import { isPaused } from './utils.js';
 
 export function pauseMenu() {
     let pauseOverlay;
@@ -19,22 +17,43 @@ export function pauseMenu() {
         menuContainer = document.createElement('div')
         menuContainer.id = 'menuContainer'
 
+
+		const pauseText = document.createElement('p')
+		pauseText.textContent = 'Game is paused!'
+		pauseText.id = 'pauseText'
+		pauseText.style.fontSize = '24px'
+
+		const pauseExplain = document.createElement('p')
+		pauseExplain.textContent = '(Press escape or click the Pause/Continue button to return to the game.)'
+		pauseExplain.id = "pauseExplain"
+		pauseExplain.style.fontSize = '18px'
+
         // Create menu options
         const continueButton = document.createElement('button')
         continueButton.textContent = 'Continue'
+		continueButton.id = 'continueButton'
         continueButton.addEventListener('click', resumeGame)
 
-        const restartButton = document.createElement('button')
-        restartButton.textContent = 'Restart'
-        restartButton.addEventListener('click', restartGame)
+		const restartLevelButton = document.createElement('button')
+		restartLevelButton.textContent = 'Restart current level'
+		restartLevelButton.id ='restartLevelButton'
+		restartLevelButton.addEventListener('click', restartGame)
 
+        const restartGameButton = document.createElement('button')
+        restartGameButton.textContent = 'Restart entire game'
+		restartGameButton.id ='restartGameButton'
+        restartGameButton.addEventListener('click', restartGame)
+
+		menuContainer.appendChild(pauseText)
+		menuContainer.appendChild(pauseExplain)
         menuContainer.appendChild(continueButton)
         menuContainer.appendChild(document.createElement('br'))
+		menuContainer.appendChild(restartLevelButton)
         menuContainer.appendChild(document.createElement('br'))
-        menuContainer.appendChild(restartButton)
+        menuContainer.appendChild(restartGameButton)
 
         pauseOverlay.appendChild(menuContainer)
-        gameContainer.appendChild(pauseOverlay)
+        document.body.appendChild(pauseOverlay)
     }
 
 	function pauseMenuButton() {
