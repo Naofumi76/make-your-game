@@ -16,7 +16,6 @@ let velocityY = -0.3; // Vertical velocity
 // Function to update the ball's position
 export function updateBallPosition() {
 	if (!isPaused) {
-		// Update position based on velocity
 		ballX += velocityX;
 		ballY += velocityY;
 
