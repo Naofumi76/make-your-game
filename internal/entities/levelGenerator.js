@@ -1,11 +1,10 @@
 const verbose = 1;
-
 export const bricks = [];
 
 const colors = ["gray", "green", "greenyellow", "yellow", "orange", "orangered", "red" ];
 
 export async function loadLevel(levelNumber) {
-	const response = await fetch("./internal/game/levels.json"); // Load JSON file
+	const response = await fetch("./internal/game/levels.json"); // Load JSON  file
 	const data = await response.json(); // Parse JSON
 	const level = data.levels.find(lvl => lvl.level === levelNumber);
 
