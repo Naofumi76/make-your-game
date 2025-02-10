@@ -1,5 +1,7 @@
+
 const verbose = 1;
 export const bricks = [];
+export let currentLevel = 1;
 
 const colors = ["gray", "green", "greenyellow", "yellow", "orange", "orangered", "red" ];
 
@@ -74,6 +76,15 @@ function createBrick (brick, health, brickWidth, brickHeight) {
 	brick.style.height = `${brickHeight}px`;
 	brick.style.width = `${brickWidth}px`;
 	return brick;
+}
+
+export function nextLevel(){
+	currentLevel +=1;
+
+	if (cleanupPauseMenu) {
+		cleanupPauseMenu() // Remove old pause menu listener if it exists
+	}
+
 }
 
 export function updateBrickColor (brick, health){

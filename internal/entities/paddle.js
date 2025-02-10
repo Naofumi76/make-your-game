@@ -7,8 +7,9 @@ import { gameIsOver } from "../utils/utils.js";
  export const paddle = document.getElementById('paddle')
 
 paddle.unbreakable = true;
+paddle.isPaddle = true;
 
- bricks.push(paddle)
+bricks.push(paddle)
 
 // Create the paddle velocity
 let paddleVelocity = 0

@@ -19,7 +19,6 @@ export function update() {
 
 // Initialize the game
 async function initGame() {
-	scoreboardButton()
 	addScore()
 	addTimer()
 	addLives()
