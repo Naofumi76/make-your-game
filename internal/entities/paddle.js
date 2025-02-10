@@ -1,4 +1,3 @@
-import {  pauseMenu } from "../utils/pausemenu.js"
 import { isPaused } from "../utils/utils.js"
 import { bricks } from "./levelGenerator.js"
 import { gameIsOver } from "../utils/utils.js";
@@ -43,8 +42,7 @@ document.addEventListener('keydown', function(event) {
         paddle.style.left = newLeft + 'px'
     }
     paddleVelocity *= 0.8
-
-	if (!isPaused) {
-		requestAnimationFrame(updatePaddle)
-	}
+	
+	requestAnimationFrame(updatePaddle)
+	
 }
