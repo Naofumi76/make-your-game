@@ -1,50 +1,74 @@
 package db
 
 import (
-	"database/sql"
+	"encoding/json"
 	"fmt"
-	"time"
-
-	_ "github.com/mattn/go-sqlite3"
+	"os"
 )
 
 type Score struct {
-	Position int
-	Name     string
-	Score    int
-	Date     string
+	Position int    `json:"position"`
+	Name     string `json:"name"`
+	Score    int    `json:"score"`
+	Time     string `json:"time"` // Time taken to finish the game
 }
 
-func ConnectDB() (*sql.DB, error) {
-	db, err := sql.Open("sqlite3", "db/database.db")
+// Reads scores from the JSON file
+func readScores() ([]Score, error) {
+	file, err := os.ReadFile("db/score.json")
 	if err != nil {
+		if os.IsNotExist(err) {
+			fmt.Println("File not found, creating an empty score.json")
+			os.WriteFile("db/score.json", []byte("[]"), 0644) // Create an empty JSON array
+			return []Score{}, nil
+		}
 		return nil, err
 	}
 
-	query := `CREATE TABLE IF NOT EXISTS scores (
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		position INTEGER NOT NULL,
-		name TEXT NOT NULL,
-		score INTEGER NOT NULL,
-		date TEXT NOT NULL
-	);`
-	_, err = db.Exec(query)
+	if len(file) == 0 {
+		return []Score{}, nil
+	}
+
+	var scores []Score
+	err = json.Unmarshal(file, &scores)
 	if err != nil {
+		fmt.Println("Error unmarshalling scores:", err)
 		return nil, err
 	}
 
-	return db, nil
+	return scores, nil
 }
 
-func AddScore(position int, name string, score int) error {
-	db, err := ConnectDB()
+// Writes scores to the JSON file
+func writeScores(scores []Score) error {
+	file, err := json.MarshalIndent(scores, "", "  ")
 	if err != nil {
 		return err
 	}
-	defer db.Close()
 
-	date := time.Now().Format("2006-01-02 15:04:05")
-	_, err = db.Exec("INSERT INTO scores (position, name, score, date) VALUES (?, ?, ?, ?)", position, name, score, date)
+	return os.WriteFile("db/score.json", file, 0644)
+}
+
+// ✅ Now correctly takes in `position`, `name`, `score`, and `time`
+func AddScore(position int, name string, score int, timeTaken string) error {
+	scores, err := readScores()
+	if err != nil {
+		return err
+	}
+
+	newScore := Score{
+		Position: position,
+		Name:     name,
+		Score:    score,
+		Time:     timeTaken, // Time is directly added, no conversion needed
+	}
+
+	scores = append(scores, newScore)
+
+	// ✅ No sorting or position recalculation
+	// We just store the values as given
+
+	err = writeScores(scores)
 	if err != nil {
 		return err
 	}
@@ -53,29 +77,7 @@ func AddScore(position int, name string, score int) error {
 	return nil
 }
 
+// Returns all scores
 func GetScores() ([]Score, error) {
-	db, err := ConnectDB()
-	if err != nil {
-		return nil, err
-	}
-	defer db.Close()
-
-	rows, err := db.Query("SELECT position, name, score, date FROM scores ORDER BY score DESC")
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-
-	var scores []Score
-	for rows.Next() {
-		var s Score
-		if err := rows.Scan(&s.Position, &s.Name, &s.Score, &s.Date); err != nil {
-			return nil, err
-		}
-		scores = append(scores, s)
-	}
-
-	return scores, nil
+	return readScores()
 }
-
-// Add score for test : INSERT INTO scores (position, name, score, date) VALUES (1, 'Nathan', 100, '2006-01-02 15:04:05');
