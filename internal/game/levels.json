@@ -18,6 +18,23 @@
 		},
 		{
 			"level": 2,
+			"gridSize": { "rows": 15, "columns": 17 },
+			"rowPattern": [
+				[],
+				[],
+				["unbreakable-1", 1, "gap-1", 2, "gap-1", 3, "gap-1", 2, "gap-1", 1, "unbreakable-1"],
+				["unbreakable-1", 1, "gap-1", 2, "gap-1", 1, "gap-1", 2, "gap-1", 1, "unbreakable-1"],
+				["unbreakable-1", 1, "gap-1", 2, "gap-1", 2, "gap-1", 1, "unbreakable-1"],
+				["unbreakable-1", 1, "gap-1", 3, "gap-1",  1, "unbreakable-1"],
+				["unbreakable-1", 1, "gap-1", 1, "gap-1",  1, "unbreakable-1"],
+				["unbreakable-1", 1, "gap-1", 1, "unbreakable-1"],
+				["unbreakable-1", 1, "unbreakable-1"],
+				["unbreakable-1"]
+			],
+			"specialTileChance": 40
+		},
+		{
+			"level": 3,
 			"gridSize": { "rows": 15, "columns": 15 },
 			"rowPattern": [
 				[9],
@@ -33,7 +50,7 @@
 				[2, "gap-3", 5, "gap-3", 2],
 				[1, "gap-3", 7, "gap-3", 1]
 			],
-			"specialTileChance": 30
+			"specialTileChance": 40
 		}
 	]
 }

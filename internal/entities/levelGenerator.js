@@ -93,10 +93,14 @@ export function updateBrickColor (brick, health){
 }
 
 function specialTileHealth(level, health){
-	if (health === colors.length - 1) {return heath}
-	if (Math.random() * 100 < level.specialTileChance) {
-		health++;
-		return specialTileHealth(level, health);
-	}
-	return health;
+	const maxHealth = colors.length - 1;
+
+	// Calculate max possible upgrades based on remaining health space
+	const maxUpgrades = maxHealth - health;
+
+	// Generate a random number between 0 and 1, then scale it to fit maxUpgrades
+	const upgrades = Math.floor(Math.log(1 - Math.random()) / Math.log(1 - (100-level.specialTileChance) / 100));
+
+	// Ensure we don’t exceed maxHealth
+	return Math.min(health + upgrades, maxHealth);
 }

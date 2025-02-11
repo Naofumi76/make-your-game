@@ -27,7 +27,7 @@ async function initGame() {
 		cleanupPauseMenu() // Remove old pause menu listener if it exists
 	}
 	cleanupPauseMenu = pauseMenu() // Set up new pause menu and store the cleanup function
-	loadLevel(2)
+	loadLevel(1)
 	updatePaddle()
 	updateBallPosition();
 	
