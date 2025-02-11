@@ -65,7 +65,7 @@ function collideBallWithBricks(ball) {
 		bricks.forEach((brick, index) => {
 			const brickRect = brick.getBoundingClientRect();
 	
-			if (isColliding(ballRect, brickRect)) {
+			if (!brick?.isPaddle && isColliding(ballRect, brickRect)) {
 				handleCollision(ballRect, brickRect);
 	
 				let health = brick.getAttribute('health');
@@ -81,6 +81,8 @@ function collideBallWithBricks(ball) {
 					}
 					
 				}
+			} else if (brick?.isPaddle && isColliding(ballRect, brickRect)){
+				handlePaddleBounce(ballRect, brickRect);
 			}
 		});
 	}
@@ -123,6 +125,20 @@ function handleCollision(ballRect, brickRect) {
 	}
 }
 
+function handlePaddleBounce(ballRect, paddleRect) {
+    const paddleCenter = paddleRect.left + paddleRect.width / 2;
+
+    const impactPosition = (ballRect.left + ballRect.width / 2 - paddleCenter) / (paddleRect.width / 2);
+    
+    // Adjust ball angle based on impact position
+    const maxBounceAngle = Math.PI / 3; // 60 degrees max angle
+    const bounceAngle = impactPosition * maxBounceAngle;
+
+    // Convert angle to velocity components
+    const speed = Math.sqrt(velocityX ** 2 + velocityY ** 2); // Maintain speed
+    velocityX = speed * Math.sin(bounceAngle);
+    velocityY = -speed * Math.cos(bounceAngle); // Always bounce upwards
+}
 
 
 // Update the ball's position every 10 milliseconds
