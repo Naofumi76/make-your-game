@@ -1,145 +1,153 @@
-import { bricks, updateBrickColor } from './levelGenerator.js';
-import { isPaused,gameIsOver } from "../utils/utils.js";
-import { lives, updateLives } from './lives.js';
-import { gameOver } from '../game/gameOver.js';
-import { updateScore } from '../game/score.js';
+import { bricks, updateBrickColor } from "./levelGenerator.js";
+import { isPaused, gameIsOver } from "../utils/utils.js";
+import { lives, updateLives } from "./lives.js";
+import { gameOver } from "../game/gameOver.js";
+import { updateScore } from "../game/score.js";
 
-// Select the ball element
-export const ball = document.getElementById('ball');
+export class Ball {
+    constructor(gameContainer) {
+		this.gameContainer = document.getElementById(gameContainer);
+        this.ball = document.createElement("div");
+		this.ball.id = "ball";
+	
+		this.ball.style.width = "15%";
+        this.ball.style.maxWidth = "10px";
+        this.ball.style.height = "10px";
+        this.ball.style.backgroundColor = "red";
+        this.ball.style.position = "absolute";
+        this.ball.style.bottom = "3.5%";
+        this.ball.style.left = "50%";
+        this.ball.style.transform = "translateX(50%)";
 
-// Set initial position and velocity
-let ballX = 50; // Initial horizontal position (percentage)
-let ballY = 80; // Initial vertical position (percentage)
-let velocityX = 0.3; // Horizontal velocity
-let velocityY = -0.3; // Vertical velocity
+        this.ballX = 50;
+        this.ballY = 80;
+        this.velocityX = 0.3;
+        this.velocityY = -0.3;
+
+		this.gameContainer.appendChild(this.ball);
+
+		this.isActive = true; // To control update loop
+
+        this.init();
+    }
 
 
-// Function to update the ball's position
-export function updateBallPosition() {
-	if (!isPaused) {
-		ballX += velocityX;
-		ballY += velocityY;
+    init() {
+        setInterval(() => this.updateBallPosition(), 10);
+    }
 
-	// Check for collision with the walls
-	if (ballX <= 0 || ballX >= 100) {
-		velocityX = -velocityX; // Reverse horizontal direction
-	}
-	if (ballY <= 0) {
-		velocityY = -velocityY; // Reverse vertical direction
-	}
+    updateBallPosition() {
+        if (!isPaused && this.isActive) {
+            this.ballX += this.velocityX;
+            this.ballY += this.velocityY;
 
-    // If the ball touch the botmon wall, reset the position
-    if (ballY >= 100){
+            if (this.ballX <= 0 || this.ballX >= 100) {
+                this.velocityX = -this.velocityX;
+            }
+            if (this.ballY <= 0) {
+                this.velocityY = -this.velocityY;
+            }
 
-        if (lives > 0) {
-            resetBallPosition()
-            updateLives();
-        } else if (!gameIsOver) {
-            ball.remove();
-            gameOver();
+            if (this.ballY >= 100) {
+                if (lives > 0) {
+                    this.resetBallPosition();
+                    updateLives();
+                } else if (!gameIsOver) {
+					console.log("Ball removed")
+                    this.ball.remove();
+                    gameOver();
+                }
+            }
+
+            this.collideBallWithBricks();
+
+            this.ball.style.left = this.ballX + "%";
+            this.ball.style.top = this.ballY + "%";
         }
+    }
 
-	}
+    resetBallPosition() {
+        this.ballX = 50;
+        this.ballY = 80;
+        this.velocityX = 0.3;
+        this.velocityY = -0.3;
+    }
 
-	collideBallWithBricks(ball);
+    collideBallWithBricks() {
+        if (!isPaused) {
+            const ballRect = this.ball.getBoundingClientRect();
+            bricks.forEach((brick, index) => {
+                const brickRect = brick.getBoundingClientRect();
+                if (!brick?.isPaddle && this.isColliding(ballRect, brickRect)) {
+                    this.handleCollision(ballRect, brickRect);
+                    let health = brick.getAttribute("health");
+                    if (health > 0) {
+                        health--;
+                        if (health === 0) {
+                            updateScore(100);
+                            brick.remove();
+                            bricks.splice(index, 1);
+                        } else {
+                            brick.setAttribute("health", health);
+                            updateBrickColor(brick, health);
+                        }
+                    }
+                } else if (brick?.isPaddle && this.isColliding(ballRect, brickRect)) {
+                    this.handlePaddleBounce(ballRect, brickRect);
+                }
+            });
+        }
+    }
 
-	// Apply the new position
-	ball.style.left = ballX + '%';
-	ball.style.top = ballY + '%';
+    isColliding(ballRect, brickRect) {
+        return (
+            ballRect.left < brickRect.right &&
+            ballRect.right > brickRect.left &&
+            ballRect.top < brickRect.bottom &&
+            ballRect.bottom > brickRect.top
+        );
+    }
 
-	}
+    handleCollision(ballRect, brickRect) {
+        const overlaps = {
+            left: Math.abs(ballRect.right - brickRect.left),
+            right: Math.abs(ballRect.left - brickRect.right),
+            top: Math.abs(ballRect.bottom - brickRect.top),
+            bottom: Math.abs(ballRect.top - brickRect.bottom),
+        };
+
+        const minOverlapSide = Object.keys(overlaps).reduce((a, b) => overlaps[a] < overlaps[b] ? a : b);
+
+        switch (minOverlapSide) {
+            case "left":
+            case "right":
+                this.velocityX = -this.velocityX;
+                this.ballX += minOverlapSide === "left" ? -1 : 1;
+                break;
+            case "top":
+            case "bottom":
+                this.velocityY = -this.velocityY;
+                this.ballY += minOverlapSide === "top" ? -1 : 1;
+                break;
+        }
+    }
+
+    handlePaddleBounce(ballRect, paddleRect) {
+        const paddleCenter = paddleRect.left + paddleRect.width / 2;
+        const impactPosition = (ballRect.left + ballRect.width / 2 - paddleCenter) / (paddleRect.width / 2);
+        const maxBounceAngle = Math.PI / 3;
+        const bounceAngle = impactPosition * maxBounceAngle;
+        const speed = Math.sqrt(this.velocityX ** 2 + this.velocityY ** 2);
+        this.velocityX = speed * Math.sin(bounceAngle);
+        this.velocityY = -speed * Math.cos(bounceAngle);
+    }
+
+
+	removeBall() {
+        this.isActive = false; // Stop the update loop
+        if (this.ball) {
+            this.ball.remove(); // Remove from DOM
+            this.ball = null; // Clear reference
+        }
+    }
 }
-
-function resetBallPosition() {
-    ballX = 50;
-    ballY = 80;
-    velocityX = 0.3;
-    velocityY = -0.3;
-}
-
-
-function collideBallWithBricks(ball) {
-	if (!isPaused) {
-		const ballRect = ball.getBoundingClientRect();
-	
-		bricks.forEach((brick, index) => {
-			const brickRect = brick.getBoundingClientRect();
-	
-			if (!brick?.isPaddle && isColliding(ballRect, brickRect)) {
-				handleCollision(ballRect, brickRect);
-	
-				let health = brick.getAttribute('health');
-				if (health > 0) {
-					health--;
-					if (health === 0 ) {
-						updateScore(100);
-						brick.remove();
-						bricks.splice(index, 1);
-					} else {
-						brick.setAttribute('health', health);
-						updateBrickColor(brick, health);
-					}
-					
-				}
-			} else if (brick?.isPaddle && isColliding(ballRect, brickRect)){
-				handlePaddleBounce(ballRect, brickRect);
-			}
-		});
-	}
-}
-
-// Check if the ball is colliding
-function isColliding(ballRect, brickRect) {
-	return (
-		ballRect.left < brickRect.right &&
-		ballRect.right > brickRect.left &&
-		ballRect.top < brickRect.bottom &&
-		ballRect.bottom > brickRect.top
-	);
-}
-
-// Handle bouncing
-function handleCollision(ballRect, brickRect) {
-	// Calculate the overlaps between the ball and the brick sides
-	const overlaps = {
-		left: Math.abs(ballRect.right - brickRect.left),
-		right: Math.abs(ballRect.left - brickRect.right),
-		top: Math.abs(ballRect.bottom - brickRect.top),
-		bottom: Math.abs(ballRect.top - brickRect.bottom),
-	};
-
-	// Determine which side of the brick has the smallest overlap and apply the corresponding bounce
-	const minOverlapSide = Object.keys(overlaps).reduce((a, b) => overlaps[a] < overlaps[b] ? a : b);
-
-	switch (minOverlapSide) {
-		case "left":
-		case "right":
-			velocityX = -velocityX;
-			ballX += minOverlapSide === "left" ? -1 : 1;
-			break;
-		case "top":
-		case "bottom":
-			velocityY = -velocityY;
-			ballY += minOverlapSide === "top" ? -1 : 1;
-			break;
-	}
-}
-
-function handlePaddleBounce(ballRect, paddleRect) {
-    const paddleCenter = paddleRect.left + paddleRect.width / 2;
-
-    const impactPosition = (ballRect.left + ballRect.width / 2 - paddleCenter) / (paddleRect.width / 2);
-    
-    // Adjust ball angle based on impact position
-    const maxBounceAngle = Math.PI / 3; // 60 degrees max angle
-    const bounceAngle = impactPosition * maxBounceAngle;
-
-    // Convert angle to velocity components
-    const speed = Math.sqrt(velocityX ** 2 + velocityY ** 2); // Maintain speed
-    velocityX = speed * Math.sin(bounceAngle);
-    velocityY = -speed * Math.cos(bounceAngle); // Always bounce upwards
-}
-
-
-// Update the ball's position every 10 milliseconds
-setInterval(updateBallPosition, 10);

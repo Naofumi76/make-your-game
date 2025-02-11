@@ -1,11 +1,18 @@
 
+import { resetTimer } from "../game/timer.js";
+import { isPaused, gameIsOver, setIsPaused, setGameIsOver } from "../utils/utils.js";
+import { Paddle} from "./paddle.js";
+import { Ball } from "./ball.js";
+
 const verbose = 1;
 export const bricks = [];
+export const ball = [];
 export let currentLevel = 1;
 
 const colors = ["gray", "green", "greenyellow", "yellow", "orange", "orangered", "red" ];
 
 export async function loadLevel(levelNumber) {
+	let ballInstance;
 	const response = await fetch("./internal/game/levels.json"); // Load JSON  file
 	const data = await response.json(); // Parse JSON
 	const level = data.levels.find(lvl => lvl.level === levelNumber);
@@ -16,6 +23,23 @@ export async function loadLevel(levelNumber) {
 	}
 	if (verbose >= 1) console.log(`Generating level ${levelNumber}`);
 	const container = document.getElementById("gameContainer");
+	
+	if (isPaused && gameIsOver){
+		setIsPaused(false); // Pause the game when the game over condition is met
+		setGameIsOver(false);
+	}
+	resetTimer();
+
+	    // Keep or create paddle
+		if (!document.getElementById("paddle")) {
+			new Paddle("gameContainer");
+		}
+	
+		ballInstance = new Ball("gameContainer");
+		ball.push(ballInstance)
+
+
+	
 
 	const brickWidth = Math.floor(gameContainer.offsetWidth / level.gridSize.columns) - 1;
 	const brickHeight = Math.floor(gameContainer.offsetHeight / level.gridSize.rows) - 1;
@@ -81,9 +105,10 @@ function createBrick (brick, health, brickWidth, brickHeight) {
 export function nextLevel(){
 	currentLevel +=1;
 
-	if (cleanupPauseMenu) {
-		cleanupPauseMenu() // Remove old pause menu listener if it exists
-	}
+	const container = document.getElementById("gameContainer");
+	container.innerHTML = "";
+
+	loadLevel(currentLevel);
 
 }
 

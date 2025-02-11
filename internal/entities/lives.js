@@ -1,5 +1,5 @@
 
-export let lives = 0; 
+export let lives = 1; 
 
 let livesElement;
 

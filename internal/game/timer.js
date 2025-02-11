@@ -1,7 +1,9 @@
 import { isPaused, gameIsOver } from "../utils/utils.js"
 import { gameOver } from "./gameOver.js"
 
-let timer = 60
+
+let INIT_TIMER = 60
+let timer = INIT_TIMER
 let timerElement
 let timerInterval
 export function addTimer() {
@@ -29,8 +31,9 @@ export function timerClock() {
 }
 
 export function resetTimer() {
-    timer = 500
+    timer = INIT_TIMER
+    console.log(timer)
     if (timerElement) {
-        timerElement.textContent = `Score: ${timer}`;
+        timerElement.textContent = `${timer}s`;
     }
 }

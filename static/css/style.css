@@ -18,30 +18,6 @@ html, body {
 }
 
 
-
-#paddle {
-	width: 15%;
-	max-width: 120px;
-	height: 10px;
-	background-color: blue;
-	position: absolute;
-	bottom: 3.5%;
-	left: 50%;
-	transform: translateX(-50%);
-}
-
-#ball {
-	width: 1.2%;
-	max-width: 10px;
-	height: 2.7%;
-	max-height: 10px;
-	background-color: red;
-	position: absolute;
-	top: 80%;
-	left: 50%;
-	transform: translateX(-50%);
-}
-
 .brick {
 	position: absolute;
 	border: 0.5px solid black;
