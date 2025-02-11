@@ -2,6 +2,29 @@
 	"levels": [
 		{
 			"level": 1,
+			"gridSize": { "rows": 20, "columns": 17 },
+			"rowPattern": [
+				["unbreakable-18"],
+				["unbreakable-1",  "gap-16",  "unbreakable-1"],
+				["unbreakable-1",  "gap-16",  "unbreakable-1"],
+				["unbreakable-1",   "gap-2", "unbreakable-12", "gap-2", "unbreakable-1"],
+				["unbreakable-1",   "gap-2",  "unbreakable-1", "gap-10", "unbreakable-1",  "gap-2",  "unbreakable-1"],
+				["unbreakable-1",   "gap-2",  "unbreakable-1", "gap-10", "unbreakable-1",  "gap-2",  "unbreakable-1"],
+				["unbreakable-1",   "gap-2",  "unbreakable-1", "gap-2", "unbreakable-6",  "gap-2", "unbreakable-1",  "gap-2",  "unbreakable-1"],
+				["unbreakable-1",   "gap-2",  "unbreakable-1", "gap-2", "unbreakable-1" , 1 ,"gap-3", "unbreakable-1",  "gap-2", "unbreakable-1",  "gap-2",  "unbreakable-1"],
+				["unbreakable-1",   "gap-2",  "unbreakable-1", "gap-2", "unbreakable-3" ,"gap-2", "unbreakable-1",  "gap-2", "unbreakable-1",  "gap-2",  "unbreakable-1"],
+				["unbreakable-1",   "gap-2",  "unbreakable-1", "gap-7", "unbreakable-1",  "gap-2", "unbreakable-1",  "gap-2",  "unbreakable-1"],
+				["unbreakable-1",   "gap-2",  "unbreakable-1", "gap-7", "unbreakable-1",  "gap-2", "unbreakable-1",  "gap-2",  "unbreakable-1"],
+				["unbreakable-1",   "gap-2",  "unbreakable-1", "unbreakable-8", "gap-2", "unbreakable-1",  "gap-2",  "unbreakable-1"],
+				["unbreakable-1",  "gap-13",  "unbreakable-1", "gap-2", "unbreakable-1"],
+				["unbreakable-1",  "gap-13",  "unbreakable-1", "gap-2", "unbreakable-1"],
+				["unbreakable-15",  "gap-2",  "unbreakable-1"],
+				[]
+			],
+			"specialTileChance": 0
+		},
+		{
+			"level": 2,
 			"gridSize": { "rows": 20, "columns": 20 },
 			"rowPattern": [
 				[],
@@ -17,7 +40,7 @@
 			"specialTileChance": 20
 		},
 		{
-			"level": 2,
+			"level": 3,
 			"gridSize": { "rows": 15, "columns": 17 },
 			"rowPattern": [
 				[],
@@ -34,8 +57,8 @@
 			"specialTileChance": 40
 		},
 		{
-			"level": 3,
-			"gridSize": { "rows": 15, "columns": 15 },
+			"level": 4,
+			"gridSize": { "rows": 18, "columns": 15 },
 			"rowPattern": [
 				[9],
 				[1, "gap-3", 7, "gap-3", 1],
