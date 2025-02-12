@@ -8,6 +8,7 @@ const verbose = 1;
 export const bricks = [];
 export const ball = [];
 export let currentLevel = 1;
+export let maxLevel
 
 const colors = ["gray", "green", "greenyellow", "yellow", "orange", "orangered", "red" ];
 
@@ -16,6 +17,7 @@ export async function loadLevel(levelNumber) {
 	const response = await fetch("./internal/game/levels.json"); // Load JSON  file
 	const data = await response.json(); // Parse JSON
 	const level = data.levels.find(lvl => lvl.level === levelNumber);
+	maxLevel = data.levels.filter(lvl => lvl.level > 0).length;
 
 	if (!level) {
 		console.error("Level not found!");

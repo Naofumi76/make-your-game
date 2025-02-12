@@ -1,5 +1,5 @@
 import { setIsPaused, setGameIsOver } from "../utils/utils.js";
-import { nextLevel, ball, currentLevel } from "../entities/levelGenerator.js";
+import { nextLevel, ball, currentLevel, maxLevel } from "../entities/levelGenerator.js";
 import { getInformations } from "./score.js";
 export function gameOver() {
     setIsPaused(true); // Pause the game when the game over condition is met
@@ -40,7 +40,7 @@ function showGameOverScreen() {
     gameOverMessage.style.color = 'black';
 
     let nextLvlButton = document.createElement('button');
-    if (currentLevel === 3) {
+    if (currentLevel === maxLevel) {
         nextLvlButton.textContent = 'Scoreboard';
         nextLvlButton.addEventListener('click', getInformations);
     } else {
