@@ -5,10 +5,18 @@ import {addTimer, timerClock} from './internal/game/timer.js'
 import {isPaused, setGameInterval} from './internal/utils/utils.js'
 import { scoreboardButton } from "./internal/game/score.js";
 import { addLives } from "./internal/entities/lives.js";
+import { createDialogueOverlay } from "./internal/game/historyOverlay.js"
 
 // Get the game container element
 let gameContainer = document.getElementById('gameContainer')
 let cleanupPauseMenu
+
+const dialogues = [
+    { text: "Hello, how are you?", speaker: "left" },
+    { text: "I'm doing great! What about you?", speaker: "right" },
+    { text: "Pretty good. Ready for our adventure?", speaker: "left" },
+    { text: "Absolutely! Let's get started.", speaker: "right" }
+];
 
 // Export the update function
 export function update() {
@@ -17,6 +25,12 @@ export function update() {
 
 // Initialize the game
 async function initGame() {
+
+    createDialogueOverlay("static/images/character1.png",
+    "static/images/character2.png",
+    dialogues
+)
+
     addScore();
     loadLevel(1);
     addTimer();

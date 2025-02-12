@@ -1,0 +1,44 @@
+/* Existing styles from before */
+#dialogueOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px;
+    box-sizing: border-box;
+    visibility: hidden; /* Hidden by default */
+    z-index: 1000;
+}
+
+.character-image {
+    width: 20%;
+    max-height: 60vh;
+    object-fit: contain;
+    border-radius: 10px;
+    transition: filter 0.3s ease;
+}
+
+.inactive {
+    filter: grayscale(100%);
+    opacity: 0.6;
+}
+
+#dialogueBox {
+    position: absolute;
+    bottom: 10%;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #333;
+}

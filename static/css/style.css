@@ -1,4 +1,9 @@
 html, body {
+	background-image: url("../images/lvl1_bg.png");
+	background-repeat: no-repeat; /* Do not repeat the image */
+	
+    background-size: 100vw 100vh;
+
 	height: 100%;
 	width: 100%;
 	margin: 0;
@@ -9,6 +14,7 @@ html, body {
 }
 
 #gameContainer {
+	background-color: rgba(0, 0, 0, 0.7);
 	width: 60%;
 	height: 40%;
 	max-width: 800px;
