@@ -52,7 +52,7 @@
 				["unbreakable-1", 1, "gap-1", 1, "gap-1",  1, "unbreakable-1"],
 				["unbreakable-1", 1, "gap-1", 1, "unbreakable-1"],
 				["unbreakable-1", 1, "unbreakable-1"],
-				["unbreakable-1"]
+				[1]
 			],
 			"specialTileChance": 40
 		},
