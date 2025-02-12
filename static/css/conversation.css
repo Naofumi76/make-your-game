@@ -1,17 +1,18 @@
-/* Existing styles from before */
+/* Existing styles */
+
 #dialogueOverlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     padding: 20px;
     box-sizing: border-box;
-    visibility: hidden; /* Hidden by default */
+    visibility: hidden;
     z-index: 1000;
 }
 
@@ -41,4 +42,20 @@
     font-family: Arial, sans-serif;
     font-size: 18px;
     color: #333;
+}
+
+/* New style for character name */
+#characterName {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    text-align: center;
 }

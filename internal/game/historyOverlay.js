@@ -1,13 +1,16 @@
-import { setIsPaused } from "../utils/utils.js";
+import { setIsPaused, setGameIsOver } from "../utils/utils.js";
 
-let currentDialogueIndex = 0;
+
 
 // Dialogue data structure: list of objects
 
 
 export function createDialogueOverlay(leftCharacterImg, rightCharacterImg, dialogueArray) {
 
+    let currentDialogueIndex = 0;
+
     setIsPaused(true);
+
     // Remove existing overlay if present
     let existingOverlay = document.getElementById("dialogueOverlay");
     if (existingOverlay) {
@@ -28,6 +31,10 @@ export function createDialogueOverlay(leftCharacterImg, rightCharacterImg, dialo
     rightCharacter.src = rightCharacterImg;
     rightCharacter.classList.add("character-image");
 
+    // Character name box
+    const nameBox = document.createElement("div");
+    nameBox.id = "characterName";
+
     // Dialogue text box
     const dialogueBox = document.createElement("div");
     dialogueBox.id = "dialogueBox";
@@ -36,6 +43,7 @@ export function createDialogueOverlay(leftCharacterImg, rightCharacterImg, dialo
     overlay.appendChild(leftCharacter);
     overlay.appendChild(dialogueBox);
     overlay.appendChild(rightCharacter);
+    overlay.appendChild(nameBox);
 
     // Add overlay to the body
     document.body.appendChild(overlay);
@@ -45,8 +53,12 @@ export function createDialogueOverlay(leftCharacterImg, rightCharacterImg, dialo
 
     // Function to update dialogue based on the current index
     function updateDialogue() {
+
+        console.log(dialogueArray)
+
         const currentDialogue = dialogueArray[currentDialogueIndex];
         dialogueBox.innerText = currentDialogue.text;
+        nameBox.innerText = currentDialogue.name;
 
         // Highlight the speaking character
         if (currentDialogue.speaker === "left") {
@@ -70,6 +82,7 @@ export function createDialogueOverlay(leftCharacterImg, rightCharacterImg, dialo
             // End of dialogues: hide the overlay
             overlay.style.visibility = "hidden";
             setIsPaused(false);
+            setGameIsOver(false);
         }
     });
 }

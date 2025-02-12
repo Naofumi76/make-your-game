@@ -1,0 +1,43 @@
+[
+    [
+    { "text": "Heya ! Who are you ? And what are you doing there ?", "speaker": "left", "name" : "Game Designer" },
+    { "text": "Hey. I'm Prompt Designer. And I'm here to get some nice collision", "speaker": "right", "name" : "Prompt Designer" },
+    { "text": "Neat, have fun with that !", "speaker": "left", "name" : "Game Designer" },
+    { "text": "I'll punch you until you fixe the collision ! ", "speaker": "right", "name" : "Prompt Designer" }
+    ],
+    [
+    { "text": "Nice to meet you!", "speaker": "left", "name" : "Game Designer" },
+    { "text": "How are things with you?", "speaker": "right", "name" : "Prompt Designer" },
+    { "text": "We're doing well! I'm excited about our upcoming project.", "speaker": "left", "name" : "Game Designer" }
+    ],
+    [
+    { "text": "Nice to meet you!", "speaker": "left", "name" : "Game Designer" },
+    { "text": "How are things with you?", "speaker": "right", "name" : "Prompt Designer" },
+    { "text": "We're doing well! I'm excited about our upcoming project.", "speaker": "left", "name" : "Game Designer" }
+    ],
+    [
+    { "text": "Nice to meet you!", "speaker": "left", "name" : "Game Designer" },
+    { "text": "How are things with you?", "speaker": "right", "name" : "Prompt Designer" },
+    { "text": "We're doing well! I'm excited about our upcoming project.", "speaker": "left", "name" : "Game Designer" }
+    ],
+    [
+    { "text": "Nice to meet you!", "speaker": "left", "name" : "Game Designer" },
+    { "text": "How are things with you?", "speaker": "right", "name" : "Prompt Designer" },
+    { "text": "We're doing well! I'm excited about our upcoming project.", "speaker": "left", "name" : "Game Designer" }
+    ],
+    [
+    { "text": "Nice to meet you!", "speaker": "left", "name" : "Game Designer" },
+    { "text": "How are things with you?", "speaker": "right", "name" : "Prompt Designer" },
+    { "text": "We're doing well! I'm excited about our upcoming project.", "speaker": "left", "name" : "Game Designer" }
+    ],
+    [
+    { "text": "Nice to meet you!", "speaker": "left", "name" : "Game Designer" },
+    { "text": "How are things with you?", "speaker": "right", "name" : "Prompt Designer" },
+    { "text": "We're doing well! I'm excited about our upcoming project.", "speaker": "left", "name" : "Game Designer" }
+    ],
+    [
+    { "text": "Nice to meet you!", "speaker": "left", "name" : "Game Designer" },
+    { "text": "How are things with you?", "speaker": "right", "name" : "Prompt Designer" },
+    { "text": "We're doing well! I'm excited about our upcoming project.", "speaker": "left", "name" : "Game Designer" }
+    ]
+]

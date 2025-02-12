@@ -1,17 +1,19 @@
 
 import { resetTimer } from "../game/timer.js";
-import { isPaused, gameIsOver, setIsPaused, setGameIsOver } from "../utils/utils.js";
+import { isPaused, gameIsOver, setIsPaused, setGameIsOver, data } from "../utils/utils.js";
+import {createDialogueOverlay} from "../game/historyOverlay.js";
 import { Paddle} from "./paddle.js";
 import { Ball } from "./ball.js";
-
 const verbose = 1;
 export const bricks = [];
 export const ball = [];
 export let currentLevel = 1;
+export let oldLevel = 1;
 
 const colors = ["gray", "green", "greenyellow", "yellow", "orange", "orangered", "red" ];
 
 export async function loadLevel(levelNumber) {
+
 	let ballInstance;
 	const response = await fetch("./internal/game/levels.json"); // Load JSON  file
 	const data = await response.json(); // Parse JSON
@@ -24,10 +26,7 @@ export async function loadLevel(levelNumber) {
 	if (verbose >= 1) console.log(`Generating level ${levelNumber}`);
 	const container = document.getElementById("gameContainer");
 	
-	if (isPaused && gameIsOver){
-		setIsPaused(false); // Pause the game when the game over condition is met
-		setGameIsOver(false);
-	}
+
 	resetTimer();
 
 	    // Keep or create paddle
@@ -104,12 +103,17 @@ function createBrick (brick, health, brickWidth, brickHeight) {
 
 export function nextLevel(){
 	currentLevel +=1;
-
+	
 	const container = document.getElementById("gameContainer");
 	container.innerHTML = "";
+	
+	console.log(currentLevel);
 
+
+	createDialogueOverlay("static/images/character1.png",
+		"static/images/character2.png",
+		data[currentLevel])
 	loadLevel(currentLevel);
-
 }
 
 export function updateBrickColor (brick, health){

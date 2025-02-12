@@ -1,6 +1,15 @@
+
 export let isPaused = false;
 export let gameIsOver = false;
 export let gameInterval = null;
+
+export let data = [];
+
+export async function loadDialogues() {
+    const response = await fetch("./static/dialogs/dialogs.json"); // Load JSON file
+    data = await response.json(); // Parse and assign the data
+    console.log("Dialogues loaded successfully: ", data);
+}
 
 // If you need to update these values from other files, you can create setter functions:
 export function setIsPaused(value) {
@@ -37,3 +46,5 @@ export function updatePaddle() {
     paddleVelocity *= 0.8
     requestAnimationFrame(updatePaddle)
 }
+
+
