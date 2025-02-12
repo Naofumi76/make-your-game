@@ -4,6 +4,8 @@ import { isPaused, gameIsOver, setIsPaused, setGameIsOver, data } from "../utils
 import {createDialogueOverlay} from "../game/historyOverlay.js";
 import { Paddle} from "./paddle.js";
 import { Ball } from "./ball.js";
+import { addOneLife } from "./lives.js";
+
 const verbose = 1;
 export const bricks = [];
 export const ball = [];
@@ -105,7 +107,7 @@ function createBrick (brick, health, brickWidth, brickHeight) {
 
 export function nextLevel(){
 	currentLevel +=1;
-	
+	addOneLife();
 	const container = document.getElementById("gameContainer");
 	container.innerHTML = "";
 	

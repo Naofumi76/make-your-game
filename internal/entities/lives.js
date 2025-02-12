@@ -22,6 +22,13 @@ export function updateLives() {
     }
 }
 
+export function addOneLife(){
+    lives +=1;
+    if (livesElement) {
+        livesElement.textContent = `lives: ${lives}`;
+    }
+}
+
 export function resetLives() {
     lives =3 ;
     if (livesElement) {
