@@ -34,7 +34,7 @@ export function timerClock() {
 }
 
 export function resetTimer() {
-    timer = INIT_TIMER
+    timer = initialTimer
     console.log(timer)
     if (timerElement) {
         timerElement.textContent = `${timer}s`;
