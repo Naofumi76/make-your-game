@@ -1,9 +1,8 @@
 import { isPaused, gameIsOver } from "../utils/utils.js"
 import { gameOver } from "./gameOver.js"
 
-
-let INIT_TIMER = 60
-let timer = INIT_TIMER
+let timer = 60
+export const initialTimer = timer
 let timerElement
 let timerInterval
 export function addTimer() {
@@ -15,6 +14,10 @@ export function addTimer() {
     // Get the game container and insert the score element before it
     const gameContainer = document.getElementById('gameContainer')
     gameContainer.parentNode.insertBefore(timerElement, gameContainer)
+}
+
+export function getTimer() {
+	return timer
 }
 
 export function timerClock() {

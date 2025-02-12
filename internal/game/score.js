@@ -1,3 +1,4 @@
+import { initialTimer, getTimer } from "./timer.js"
 export let score = 0
 let scoreElement
 let currentPage = 1 // Track current page
@@ -53,10 +54,10 @@ export function getInformations(timer) {
         }
 
         const playerData = {
-            position: 0, // Will have to be calculated
+            position: 0, // Calculated dynamically when showing the scoreboard
             name: name,
             score: score,
-            time: formatGameTime(timer)
+            time: formatGameTime(parseInt(timer))
         }
 
         await submitScore(playerData)
@@ -69,10 +70,10 @@ export function getInformations(timer) {
 
 // Format game time as "minutes:seconds"
 function formatGameTime(timer) {
-    let seconds = 500 - timer
+    let seconds = initialTimer - timer
     let minutes = Math.floor(seconds / 60)
     let remainingSeconds = seconds % 60
-    return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`
+    return `${minutes > 10 ? minutes : '0'+minutes}:${remainingSeconds > 10 ? remainingSeconds : '0'+remainingSeconds}`
 }
 
 // Send score to Go API
@@ -148,9 +149,12 @@ async function showScoreboard(page = 1) {
 
 
 export function scoreboardButton() {
-	let scoreButton = document.createElement('button')
-    scoreButton.id ='scoreButton'
+    let scoreButton = document.createElement('button')
+    scoreButton.id = 'scoreButton'
     scoreButton.textContent = 'Scoreboard'
-    scoreButton.addEventListener('click', () => showScoreboard(1))
+    scoreButton.addEventListener('click', () => {
+        let currentTimer = getTimer() // Get the current timer value when clicked
+        getInformations(currentTimer)
+    })
     document.body.appendChild(scoreButton)
 }
