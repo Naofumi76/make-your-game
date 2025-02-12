@@ -3,6 +3,7 @@ import { resetTimer } from "../game/timer.js";
 import { isPaused, gameIsOver, setIsPaused, setGameIsOver } from "../utils/utils.js";
 import { Paddle} from "./paddle.js";
 import { Ball } from "./ball.js";
+import { addOneLife } from "./lives.js";
 
 const verbose = 1;
 export const bricks = [];
@@ -104,12 +105,11 @@ function createBrick (brick, health, brickWidth, brickHeight) {
 
 export function nextLevel(){
 	currentLevel +=1;
-
+	addOneLife();
 	const container = document.getElementById("gameContainer");
 	container.innerHTML = "";
 
 	loadLevel(currentLevel);
-
 }
 
 export function updateBrickColor (brick, health){
