@@ -18,7 +18,7 @@ export function update() {
 // Initialize the game
 async function initGame() {
     addScore();
-    loadLevel(1);
+    loadLevel(5);
     addTimer();
     addLives();
     timerClock();
