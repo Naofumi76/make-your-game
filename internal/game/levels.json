@@ -92,6 +92,47 @@
 				[]
 			],
 			"specialTileChance": 50
+		},
+		{
+			"level": 6,
+			"gridSize": { "rows": 30, "columns": 30 },
+			"rowPattern": [
+				[33],
+				[33],
+				[33],
+				[33],
+				[33],
+				[33],
+				[33],
+				[33],
+				[33],
+				[15, "gap-3", 15],
+				[14, "gap-5", 14],
+				[13, "gap-7", 13],
+				[12, "gap-9", 12],
+				[12, "gap-9", 12],
+				[12, "gap-9", 12],
+				[12, "gap-9", 12],
+				[13, "gap-7", 13],
+				[14, "gap-5", 14],
+				[15, "gap-3", 15],
+				[14,"unbreakable-1","gap-3","unbreakable-1",14],
+				[13,"unbreakable-1","gap-5","unbreakable-1",13],
+				[13,"unbreakable-1","gap-5","unbreakable-1",13],
+				[12,"unbreakable-1","gap-7","unbreakable-1",12],
+				[12,"unbreakable-1","gap-7","unbreakable-1",12],
+				[12,"unbreakable-1","gap-7","unbreakable-1",12],
+				[11,"unbreakable-1","gap-9","unbreakable-1",11],
+				[11,"unbreakable-1","gap-9","unbreakable-1",11],
+				[11,"unbreakable-1","gap-9","unbreakable-1",11],
+				[11,"unbreakable-1","gap-9","unbreakable-1",11],
+				[10,"unbreakable-1","gap-11","unbreakable-1",10],
+				[10,"unbreakable-1","gap-11","unbreakable-1",10],
+				[],
+				[],
+				[]
+			],
+			"specialTileChance": 20
 		}
 	]
 }
