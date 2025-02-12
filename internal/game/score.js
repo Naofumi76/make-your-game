@@ -53,12 +53,14 @@ export function getInformations(timer) {
             return
         }
 
+        const formattedDate = new Date().toLocaleString('sv-SE').replace(',', '') // Converts to "YYYY-MM-DD HH:MM:SS"
+
         const playerData = {
             position: 0, // Calculated dynamically when showing the scoreboard
             name: name,
             score: score,
-            time: formatGameTime(parseInt(timer))
-        }
+            time: formattedDate // Now in "YYYY-MM-DD HH:MM:SS" format
+        };
 
         await submitScore(playerData)
         showScoreboard()
