@@ -34,6 +34,12 @@ export function pauseMenu() {
 		continueButton.id = 'continueButton'
         continueButton.addEventListener('click', resumeGame)
 
+
+		const restartLevelButton = document.createElement('button')
+		restartLevelButton.textContent = 'Restart level'
+		restartLevelButton.id ='restartLevelButton'
+		restartLevelButton.addEventListener('click', restartLevel)
+
         const restartGameButton = document.createElement('button')
         restartGameButton.textContent = 'Restart game'
 		restartGameButton.id ='restartGameButton'
@@ -42,6 +48,8 @@ export function pauseMenu() {
 		menuContainer.appendChild(pauseText)
 		menuContainer.appendChild(pauseExplain)
         menuContainer.appendChild(continueButton)
+        menuContainer.appendChild(document.createElement('br'))
+		menuContainer.appendChild(restartLevelButton)
         menuContainer.appendChild(document.createElement('br'))
         menuContainer.appendChild(restartGameButton)
 
@@ -74,6 +82,10 @@ export function pauseMenu() {
     function resumeGame() {
         hidePauseMenu()
     }
+
+	function restartLevel() {
+
+	}
 
     function restartGame() {
         hidePauseMenu()

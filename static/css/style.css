@@ -82,7 +82,21 @@ html, body {
     transform: scale(0.95);
 }
 
-/* Restart Button (Pause Menu) */
+
+/* Restart Level Button (Pause Menu) */
+#restartLevelButton {
+    background-color: orange;
+}
+
+#restartLevelButton:hover {
+    background-color: orange;
+}
+
+#restartLevelButton:active {
+    transform: scale(0.95);
+}
+
+/* Restart Game Button (Pause Menu) */
 #restartGameButton {
     background-color: red;
 }
