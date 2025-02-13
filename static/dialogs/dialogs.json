@@ -1,43 +1,44 @@
 [
     [
-    { "text": "Heya ! Who are you ? And what are you doing there ?", "speaker": "left", "name" : "Game Designer" },
-    { "text": "Hey. I'm Prompt Designer. And I'm here to get some nice collision", "speaker": "right", "name" : "Prompt Designer" },
-    { "text": "Neat, have fun with that !", "speaker": "left", "name" : "Game Designer" },
-    { "text": "I'll punch you until you fixe the collision ! ", "speaker": "right", "name" : "Prompt Designer" }
+        { "text": "Hey ! You ! What are you doing inside my forest ? Building that thing ?", "speaker": "left", "name" : "Sylthara" },
+        { "text": "Its none of your buissness Dryade ! Stay away of my tools and no harm will be done to you.", "speaker": "right", "name" : "Altharion" },
+        { "text": "Wait... It's siphonning the forest magic ! You witch ! I'll destroy any of your stuff !", "speaker": "left", "name" : "Sylthara" },
+        { "text": "Haha... I would love to see you try... and fail ! ", "speaker": "right", "name" : "Altharion" }
     ],
     [
-    { "text": "Nice to meet you!", "speaker": "left", "name" : "Game Designer" },
-    { "text": "How are things with you?", "speaker": "right", "name" : "Prompt Designer" },
-    { "text": "We're doing well! I'm excited about our upcoming project.", "speaker": "left", "name" : "Game Designer" }
+        { "text": "Ugh... I'm finally done with that witch. Stealing the forest magic... How could people like that exist ? Wait ! Something is flying towards me !", "speaker": "left", "name" : "Sylthara" },
+        { "text": " *Dramatical entrance* Hello, Dryade ! Nice forest you have there. ", "speaker": "right", "name" : "Dravenir" },
+        { "text": "Mmh... Yeah, thanks. I'm taking great care of it... And you are ?", "speaker": "left", "name" : "Sylthara" },
+        { "text": " I'm Dravenir ! The new lord of that forest ! Now, bow before your new king.", "speaker": "right", "name" : "Dravenir" },
+        { "text": "Yeah, right... Welp, another dragon will go extinct today !", "speaker": "left", "name" : "Sylthara" }
     ],
     [
-    { "text": "Nice to meet you!", "speaker": "left", "name" : "Game Designer" },
-    { "text": "How are things with you?", "speaker": "right", "name" : "Prompt Designer" },
-    { "text": "We're doing well! I'm excited about our upcoming project.", "speaker": "left", "name" : "Game Designer" }
+        { "text": "Hello, Dryade. Or should i say Sylthara ?", "speaker": "right", "name" : "Vaylen" },
+        { "text": "Ah ! Where do you come from ? I didnt ear you coming. And how did you know my name ?", "speaker": "left", "name" : "Sylthara" },
+        { "text": "Hoo... Vaylen, knows a lots of things, Dryade, even how much power is store inside the forests heart.", "speaker": "right", "name" : "Vaylen" },
+        { "text": "Here to steal the heart ? Give up the idea and go back to your sewers, Vaylen. You'll get hurt if you try. ", "speaker": "left", "name" : "Sylthara" },
+        { "text": "Vaylen will find the heart and take it, even on your dead body, Dryade.", "speaker": "left", "name" : "Vaylen" },
+        { "text": "Bring it one !", "speaker": "left", "name" : "Sylthara" }
     ],
     [
-    { "text": "Nice to meet you!", "speaker": "left", "name" : "Game Designer" },
-    { "text": "How are things with you?", "speaker": "right", "name" : "Prompt Designer" },
-    { "text": "We're doing well! I'm excited about our upcoming project.", "speaker": "left", "name" : "Game Designer" }
+        { "text": "Ho hello there ! I've se-", "speaker": "right", "name" : "Kaelistra" },
+        { "text": "What ! An other one ? Okay, come here, lets deal with you ! ", "speaker": "left", "name" : "Sylthara" },
+        { "text": "Wait, what ? No I'm here for spe- ! ", "speaker": "left", "name" : "Kaelistra" },
+        { "text": "Shut up and fight or get your ass out of my forest !", "speaker": "left", "name" : "Sylthara" }
     ],
     [
-    { "text": "Nice to meet you!", "speaker": "left", "name" : "Game Designer" },
-    { "text": "How are things with you?", "speaker": "right", "name" : "Prompt Designer" },
-    { "text": "We're doing well! I'm excited about our upcoming project.", "speaker": "left", "name" : "Game Designer" }
+        { "text": "Hello, Sylthara, I'm a celestial and wanted to say you are doing an amazing work. Plus the collision really work as attended. People saying otherwise are dumb.", "speaker": "right", "name" : "Rynnara" },
+        { "text": "Neat. Thats really cool to hear.", "speaker": "left", "name" : "Sylthara" },
+        { "text": "Here, have a nice level to play with :)", "speaker": "left", "name" : "Sylthara" },
+        { "text": "Uh ?", "speaker": "left", "name" : "Sylthara" }
     ],
     [
-    { "text": "Nice to meet you!", "speaker": "left", "name" : "Game Designer" },
-    { "text": "How are things with you?", "speaker": "right", "name" : "Prompt Designer" },
-    { "text": "We're doing well! I'm excited about our upcoming project.", "speaker": "left", "name" : "Game Designer" }
+        { "text": "Hey. I'm an hunter and kinda looking for a fight. Lets fight.", "speaker": "right", "name" : "Tharic" },
+        { "text": "Ok.", "speaker": "left", "name" : "Sylthara" }
     ],
     [
-    { "text": "Nice to meet you!", "speaker": "left", "name" : "Game Designer" },
-    { "text": "How are things with you?", "speaker": "right", "name" : "Prompt Designer" },
-    { "text": "We're doing well! I'm excited about our upcoming project.", "speaker": "left", "name" : "Game Designer" }
-    ],
-    [
-    { "text": "Nice to meet you!", "speaker": "left", "name" : "Game Designer" },
-    { "text": "How are things with you?", "speaker": "right", "name" : "Prompt Designer" },
-    { "text": "We're doing well! I'm excited about our upcoming project.", "speaker": "left", "name" : "Game Designer" }
+    { "text": "Nice to meet you!", "speaker": "left", "name" : "Sylthara" },
+    { "text": "How are things with you?", "speaker": "right", "name" : "Isolde " },
+    { "text": "We're doing well! I'm excited about our upcoming project.", "speaker": "left", "name" : "Sylthara" }
     ]
 ]

@@ -105,16 +105,16 @@ function createBrick (brick, health, brickWidth, brickHeight) {
 }
 
 export function nextLevel(){
-	currentLevel +=1;
 	const container = document.getElementById("gameContainer");
 	container.innerHTML = "";
 	
 	console.log(currentLevel);
-
-
+	
+	
 	createDialogueOverlay(getDataImg()[currentLevel][0],
 	getDataImg()[currentLevel][1],
-		data[currentLevel])
+	data[currentLevel])
+	currentLevel +=1;
 	loadLevel(currentLevel);
 }
 
