@@ -1,4 +1,4 @@
-import { gameInterval, setGameInterval, update, setIsPaused, isPaused } from './utils.js';
+import { gameInterval, setGameInterval, update, setIsPaused, isPaused, gameIsOver } from './utils.js';
 import { resetTimer } from '../game/timer.js';
 import { resetScore } from '../game/score.js';
 
@@ -34,13 +34,14 @@ export function pauseMenu() {
 		continueButton.id = 'continueButton'
         continueButton.addEventListener('click', resumeGame)
 
+
 		const restartLevelButton = document.createElement('button')
-		restartLevelButton.textContent = 'Restart current level'
+		restartLevelButton.textContent = 'Restart level'
 		restartLevelButton.id ='restartLevelButton'
-		restartLevelButton.addEventListener('click', restartGame)
+		restartLevelButton.addEventListener('click', restartLevel)
 
         const restartGameButton = document.createElement('button')
-        restartGameButton.textContent = 'Restart entire game'
+        restartGameButton.textContent = 'Restart game'
 		restartGameButton.id ='restartGameButton'
         restartGameButton.addEventListener('click', restartGame)
 
@@ -82,6 +83,10 @@ export function pauseMenu() {
         hidePauseMenu()
     }
 
+	function restartLevel() {
+
+	}
+
     function restartGame() {
         hidePauseMenu()
         resetTimer()
@@ -94,20 +99,24 @@ export function pauseMenu() {
 
     function handleEscapeKey(event) {
         if (event.key === 'Escape') {
-            if (isPaused) {
-                hidePauseMenu()
-            } else {
-                showPauseMenu()
-            }
+			if (!gameIsOver) {
+				if (isPaused) {
+					hidePauseMenu()
+				} else {
+					showPauseMenu()
+				}
+			}
         }
     }
 
 	function handlePauseButton() {
-		if (isPaused) {
-            hidePauseMenu()
-        } else {
-            showPauseMenu()
-        }
+		if (!gameIsOver) {
+			if (isPaused) {
+				hidePauseMenu()
+			} else {
+				showPauseMenu()
+			}
+		}
 	}
 
     createPauseMenu()

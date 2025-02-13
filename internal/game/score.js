@@ -31,20 +31,16 @@ export function getInformations(timer) {
 
     let infoContainer = document.createElement('div')
 
-    let textInfo = document.createElement('p')
-    textInfo.textContent = 'Congratulations, you finished the game! Enter your name for the scoreboard.'
-    textInfo.id = "textInfo"
-
-    infoContainer.appendChild(textInfo)
-
     let nameInput = document.createElement('input')
     nameInput.type = 'text'
     nameInput.id = 'nameInput'
+	nameInput.placeholder = 'Congratulations! Enter your name for the scoreboard.'
     nameInput.required = true
 
     infoContainer.appendChild(nameInput)
 
     let submitButton = document.createElement('button')
+	submitButton.id = 'submitButton'
     submitButton.textContent = 'Submit'
     submitButton.addEventListener('click', async function() {
         const name = nameInput.value.trim()
@@ -106,8 +102,10 @@ async function showScoreboard(page = 1) {
 
         document.body.textContent = ''
         let scoreboard = document.createElement("div")
+		scoreboard.id = "scoreboard"
 
         let scoreList = document.createElement("ul")
+		scoreList.id = "scoreList"
         scores.scores.forEach(score => {
             let li = document.createElement("li")
             li.textContent = `${score.position}. ${score.name} - ${score.score} points (${score.time})`
@@ -121,6 +119,7 @@ async function showScoreboard(page = 1) {
         paginationContainer.id = "pagination"
 
         let prevButton = document.createElement("button")
+		prevButton.classList.add("scoreboardButton")
         prevButton.textContent = "Previous"
         prevButton.disabled = currentPage === 1
         prevButton.onclick = function () {
@@ -130,6 +129,7 @@ async function showScoreboard(page = 1) {
         }
 
         let nextButton = document.createElement("button")
+		nextButton.classList.add("scoreboardButton")
         nextButton.textContent = "Next"
 		nextButton.disabled = currentPage === scores.totalPages
         nextButton.onclick = function () {
