@@ -78,7 +78,6 @@ function restartGame() {
 }
 
 export function restartLevel(){
-    console.log("teeeeeeeeeeeeeeeeeeeeeeeeeest");
     rewriteScore();
     loadLevel(currentLevel);
 }
