@@ -1,7 +1,7 @@
 import { isPaused, gameIsOver } from "../utils/utils.js"
 import { gameOver } from "./gameOver.js"
 
-let timer = 60
+let timer = 1
 export const initialTimer = timer
 let timerElement
 let timerInterval

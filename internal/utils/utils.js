@@ -5,6 +5,19 @@ export let gameInterval = null;
 
 export let data = [];
 
+
+export function getDataImg(){
+    return[
+        ["static/images/character1.png","static/images/character2.png"],
+        ["static/images/character1.png","static/images/character3.png"],
+        ["static/images/character1.png","static/images/character4.png"],
+        ["static/images/character1.png","static/images/character5.png"],
+        ["static/images/character1.png","static/images/character6.png"],
+        ["static/images/character1.png","static/images/character7.png"],
+        ["static/images/character1.png","static/images/character8.png"]
+    ];
+}
+
 export async function loadDialogues() {
     const response = await fetch("./static/dialogs/dialogs.json"); // Load JSON file
     data = await response.json(); // Parse and assign the data
