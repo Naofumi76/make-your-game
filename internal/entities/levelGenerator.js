@@ -4,6 +4,8 @@ import { isPaused, gameIsOver, setIsPaused, setGameIsOver, data, getDataImg } fr
 import {createDialogueOverlay} from "../game/historyOverlay.js";
 import { Paddle} from "./paddle.js";
 import { Ball } from "./ball.js";
+import { cacheScore } from "../game/score.js";
+import { addOneLife, resetLives } from "./lives.js";
 
 const verbose = 1;
 export const bricks = [];
@@ -16,19 +18,30 @@ const colors = ["gray", "green", "greenyellow", "yellow", "orange", "orangered",
 
 export async function loadLevel(levelNumber) {
 
+	if (levelNumber === 1) {
+		resetLives();
+	} else if (levelNumber === currentLevel + 1){ addOneLife(); }
+	currentLevel = levelNumber;
+	const container = document.getElementById("gameContainer");
+	container.innerHTML = "";
+	console.log(currentLevel);
+	cacheScore();
+	
+	createDialogueOverlay(getDataImg()[currentLevel][0],
+	getDataImg()[currentLevel][1],
+		data[currentLevel])
+
 	let ballInstance;
 	const response = await fetch("./internal/game/levels.json"); // Load JSON  file
-	const data = await response.json(); // Parse JSON
-	const level = data.levels.find(lvl => lvl.level === levelNumber);
-	maxLevel = data.levels.filter(lvl => lvl.level > 0).length;
+	const dataResponse = await response.json(); // Parse JSON
+	const level = dataResponse.levels.find(lvl => lvl.level === levelNumber);
+	maxLevel = dataResponse.levels.filter(lvl => lvl.level > 0).length;
 
 	if (!level) {
 		console.error("Level not found!");
 		return;
 	}
 	if (verbose >= 1) console.log(`Generating level ${levelNumber}`);
-	const container = document.getElementById("gameContainer");
-	
 
 	resetTimer();
 
@@ -102,20 +115,6 @@ function createBrick (brick, health, brickWidth, brickHeight) {
 	brick.style.height = `${brickHeight}px`;
 	brick.style.width = `${brickWidth}px`;
 	return brick;
-}
-
-export function nextLevel(){
-	const container = document.getElementById("gameContainer");
-	container.innerHTML = "";
-	
-	console.log(currentLevel);
-	
-	
-	createDialogueOverlay(getDataImg()[currentLevel][0],
-	getDataImg()[currentLevel][1],
-	data[currentLevel])
-	currentLevel +=1;
-	loadLevel(currentLevel);
 }
 
 export function updateBrickColor (brick, health){

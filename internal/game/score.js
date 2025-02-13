@@ -1,5 +1,6 @@
 import { initialTimer, getTimer } from "./timer.js"
-export let score = 0
+export let score = 0;
+export let preLevelScore = 0;
 let scoreElement
 let currentPage = 1 // Track current page
 
@@ -12,18 +13,33 @@ export function addScore() {
     gameContainer.parentNode.insertBefore(scoreElement, gameContainer)
 }
 
-export function updateScore(points) {
-    score += points
+export function setScore(newScore) {
+    score = newScore
     if (scoreElement) {
         scoreElement.textContent = `Score: ${score}`
     }
 }
 
-export function resetScore() {
-    score = 0
+export function cacheScore() {
+    preLevelScore = score
     if (scoreElement) {
         scoreElement.textContent = `Score: ${score}`
     }
+}
+
+export function rewriteScore(){
+    score = preLevelScore;
+    if (scoreElement) {
+        scoreElement.textContent = `Score: ${score}`
+    }
+}
+
+export function updateScore(points) {
+    setScore(score + points);
+}
+
+export function resetScore() {
+    setScore(0);
 }
 
 export function getInformations(timer) {

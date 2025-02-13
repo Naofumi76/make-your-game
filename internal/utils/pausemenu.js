@@ -1,6 +1,7 @@
 import { gameInterval, setGameInterval, update, setIsPaused, isPaused, gameIsOver } from './utils.js';
 import { resetTimer } from '../game/timer.js';
-import { resetScore } from '../game/score.js';
+import { resetScore, rewriteScore } from '../game/score.js';
+import { loadLevel, currentLevel } from '../entities/levelGenerator.js';
 
 export function pauseMenu() {
     let pauseOverlay;
@@ -84,7 +85,9 @@ export function pauseMenu() {
     }
 
 	function restartLevel() {
-
+        hidePauseMenu()
+        rewriteScore();
+        loadLevel(currentLevel);
 	}
 
     function restartGame() {

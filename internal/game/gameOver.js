@@ -1,6 +1,6 @@
 import { setIsPaused, setGameIsOver } from "../utils/utils.js";
-import { nextLevel, ball, currentLevel, maxLevel } from "../entities/levelGenerator.js";
-import { getInformations } from "./score.js";
+import { ball, currentLevel, loadLevel, maxLevel } from "../entities/levelGenerator.js";
+import { getInformations, score, preLevelScore, rewriteScore } from "./score.js";
 export function gameOver() {
     setIsPaused(true); // Pause the game when the game over condition is met
     setGameIsOver(true);
@@ -45,19 +45,25 @@ function showGameOverScreen() {
         nextLvlButton.addEventListener('click', getInformations);
     } else {
         nextLvlButton.textContent = 'Next Lvl';
-        nextLvlButton.addEventListener('click', nextLevel);
+        let temp = currentLevel + 1
+        nextLvlButton.addEventListener('click',() => loadLevel(temp));
     }
 
     // Restart button
     let restartButton = document.createElement('button');
-    restartButton.textContent = 'Restart';
+    restartButton.textContent = 'Restart game';
     restartButton.addEventListener('click', restartGame);
+
+    let restartLevelButton = document.createElement('button');
+    restartLevelButton.textContent = 'Restart level';
+    restartLevelButton.addEventListener('click', () => restartLevel());
 
     // Append elements
     gameOverContainer.appendChild(gameOverMessage);
     gameOverContainer.appendChild(document.createElement('br'));
     gameOverContainer.appendChild(nextLvlButton);
     gameOverContainer.appendChild(restartButton);
+    gameOverContainer.appendChild(restartLevelButton);
 
     gameOverOverlay.appendChild(gameOverContainer);
     gameContainer.appendChild(gameOverOverlay);
@@ -69,4 +75,9 @@ function showGameOverScreen() {
 function restartGame() {
     document.body.innerHTML = ''; // Clear everything
     location.reload(); // Reload the page to reset the game
+}
+
+export function restartLevel(){
+    rewriteScore();
+    loadLevel(currentLevel);
 }
