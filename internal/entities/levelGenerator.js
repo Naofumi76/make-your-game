@@ -16,19 +16,26 @@ const colors = ["gray", "green", "greenyellow", "yellow", "orange", "orangered",
 
 export async function loadLevel(levelNumber) {
 
+	currentLevel = levelNumber;
+	const container = document.getElementById("gameContainer");
+	container.innerHTML = "";
+	console.log(currentLevel);
+	
+	createDialogueOverlay(getDataImg()[currentLevel][0],
+	getDataImg()[currentLevel][1],
+		data[currentLevel])
+
 	let ballInstance;
 	const response = await fetch("./internal/game/levels.json"); // Load JSON  file
-	const data = await response.json(); // Parse JSON
-	const level = data.levels.find(lvl => lvl.level === levelNumber);
-	maxLevel = data.levels.filter(lvl => lvl.level > 0).length;
+	const dataResponse = await response.json(); // Parse JSON
+	const level = dataResponse.levels.find(lvl => lvl.level === levelNumber);
+	maxLevel = dataResponse.levels.filter(lvl => lvl.level > 0).length;
 
 	if (!level) {
 		console.error("Level not found!");
 		return;
 	}
 	if (verbose >= 1) console.log(`Generating level ${levelNumber}`);
-	const container = document.getElementById("gameContainer");
-	
 
 	resetTimer();
 
@@ -102,20 +109,6 @@ function createBrick (brick, health, brickWidth, brickHeight) {
 	brick.style.height = `${brickHeight}px`;
 	brick.style.width = `${brickWidth}px`;
 	return brick;
-}
-
-export function nextLevel(){
-	currentLevel +=1;
-	const container = document.getElementById("gameContainer");
-	container.innerHTML = "";
-	
-	console.log(currentLevel);
-
-
-	createDialogueOverlay(getDataImg()[currentLevel][0],
-	getDataImg()[currentLevel][1],
-		data[currentLevel])
-	loadLevel(currentLevel);
 }
 
 export function updateBrickColor (brick, health){
