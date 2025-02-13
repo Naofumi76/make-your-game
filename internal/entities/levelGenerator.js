@@ -1,6 +1,6 @@
 
 import { resetTimer } from "../game/timer.js";
-import { isPaused, gameIsOver, setIsPaused, setGameIsOver, data } from "../utils/utils.js";
+import { isPaused, gameIsOver, setIsPaused, setGameIsOver, data, getDataImg } from "../utils/utils.js";
 import {createDialogueOverlay} from "../game/historyOverlay.js";
 import { Paddle} from "./paddle.js";
 import { Ball } from "./ball.js";
@@ -112,8 +112,8 @@ export function nextLevel(){
 	console.log(currentLevel);
 
 
-	createDialogueOverlay("static/images/character1.png",
-		"static/images/character2.png",
+	createDialogueOverlay(getDataImg()[currentLevel][0],
+	getDataImg()[currentLevel][1],
 		data[currentLevel])
 	loadLevel(currentLevel);
 }

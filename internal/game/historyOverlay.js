@@ -1,14 +1,8 @@
 import { setIsPaused, setGameIsOver } from "../utils/utils.js";
 
 
-
-// Dialogue data structure: list of objects
-
-
 export function createDialogueOverlay(leftCharacterImg, rightCharacterImg, dialogueArray) {
-
     let currentDialogueIndex = 0;
-
     setIsPaused(true);
 
     // Remove existing overlay if present
@@ -21,29 +15,43 @@ export function createDialogueOverlay(leftCharacterImg, rightCharacterImg, dialo
     const overlay = document.createElement("div");
     overlay.id = "dialogueOverlay";
 
+    // Character container
+    const characterContainer = document.createElement("div");
+    characterContainer.classList.add("character-container");
+
     // Left character image
     const leftCharacter = document.createElement("img");
     leftCharacter.src = leftCharacterImg;
     leftCharacter.classList.add("character-image");
+
+    // Left character name
+    const leftNameBox = document.createElement("div");
+    leftNameBox.id = "left-name-box";
+    leftNameBox.classList.add("character-name");
 
     // Right character image
     const rightCharacter = document.createElement("img");
     rightCharacter.src = rightCharacterImg;
     rightCharacter.classList.add("character-image");
 
-    // Character name box
-    const nameBox = document.createElement("div");
-    nameBox.id = "characterName";
+    // Right character name
+    const rightNameBox = document.createElement("div");
+    rightNameBox.id = "right-name-box";
+    rightNameBox.classList.add("character-name");
+
+    // Append character images and name boxes to character container
+    characterContainer.appendChild(leftCharacter);
+    characterContainer.appendChild(leftNameBox);
+    characterContainer.appendChild(rightCharacter);
+    characterContainer.appendChild(rightNameBox);
 
     // Dialogue text box
     const dialogueBox = document.createElement("div");
     dialogueBox.id = "dialogueBox";
 
     // Append all elements to overlay
-    overlay.appendChild(leftCharacter);
+    overlay.appendChild(characterContainer);
     overlay.appendChild(dialogueBox);
-    overlay.appendChild(rightCharacter);
-    overlay.appendChild(nameBox);
 
     // Add overlay to the body
     document.body.appendChild(overlay);
@@ -53,18 +61,18 @@ export function createDialogueOverlay(leftCharacterImg, rightCharacterImg, dialo
 
     // Function to update dialogue based on the current index
     function updateDialogue() {
-
-        console.log(dialogueArray)
-
         const currentDialogue = dialogueArray[currentDialogueIndex];
         dialogueBox.innerText = currentDialogue.text;
-        nameBox.innerText = currentDialogue.name;
 
-        // Highlight the speaking character
+        // Set character name and highlight speaking character
         if (currentDialogue.speaker === "left") {
+            leftNameBox.innerText = currentDialogue.name;
+            rightNameBox.innerText = ""; // Clear name
             leftCharacter.classList.remove("inactive");
             rightCharacter.classList.add("inactive");
         } else {
+            rightNameBox.innerText = currentDialogue.name;
+            leftNameBox.innerText = ""; // Clear name
             rightCharacter.classList.remove("inactive");
             leftCharacter.classList.add("inactive");
         }
