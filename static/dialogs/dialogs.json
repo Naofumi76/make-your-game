@@ -29,7 +29,7 @@
     [
         { "text": "Hello, Sylthara, I'm a celestial and wanted to say you are doing an amazing work. Plus the collision really work as attended. People saying otherwise are dumb.", "speaker": "right", "name" : "Rynnara" },
         { "text": "Neat. Thats really cool to hear.", "speaker": "left", "name" : "Sylthara" },
-        { "text": "Here, have a nice level to play with :)", "speaker": "left", "name" : "Sylthara" },
+        { "text": "Here, have a nice level to play with :)", "speaker": "right", "name" : "Rynnara" },
         { "text": "Uh ?", "speaker": "left", "name" : "Sylthara" }
     ],
     [
