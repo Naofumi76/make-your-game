@@ -12,18 +12,19 @@ export function addScore() {
     gameContainer.parentNode.insertBefore(scoreElement, gameContainer)
 }
 
-export function updateScore(points) {
-    score += points
+export function setScore(newScore) {
+    score = newScore
     if (scoreElement) {
         scoreElement.textContent = `Score: ${score}`
     }
 }
 
+export function updateScore(points) {
+    setScore(score + points);
+}
+
 export function resetScore() {
-    score = 0
-    if (scoreElement) {
-        scoreElement.textContent = `Score: ${score}`
-    }
+    setScore(0);
 }
 
 export function getInformations(timer) {
