@@ -4,6 +4,8 @@ import { isPaused, gameIsOver, setIsPaused, setGameIsOver, data, getDataImg } fr
 import {createDialogueOverlay} from "../game/historyOverlay.js";
 import { Paddle} from "./paddle.js";
 import { Ball } from "./ball.js";
+import { cacheScore } from "../game/score.js";
+import { addOneLife, resetLives } from "./lives.js";
 
 const verbose = 1;
 export const bricks = [];
@@ -16,10 +18,14 @@ const colors = ["gray", "green", "greenyellow", "yellow", "orange", "orangered",
 
 export async function loadLevel(levelNumber) {
 
+	if (levelNumber === 1) {
+		resetLives();
+	} else if (levelNumber === currentLevel + 1){ addOneLife(); }
 	currentLevel = levelNumber;
 	const container = document.getElementById("gameContainer");
 	container.innerHTML = "";
 	console.log(currentLevel);
+	cacheScore();
 	
 	createDialogueOverlay(getDataImg()[currentLevel][0],
 	getDataImg()[currentLevel][1],

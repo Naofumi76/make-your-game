@@ -1,5 +1,6 @@
 import { initialTimer, getTimer } from "./timer.js"
-export let score = 0
+export let score = 0;
+export let preLevelScore = 0;
 let scoreElement
 let currentPage = 1 // Track current page
 
@@ -14,6 +15,20 @@ export function addScore() {
 
 export function setScore(newScore) {
     score = newScore
+    if (scoreElement) {
+        scoreElement.textContent = `Score: ${score}`
+    }
+}
+
+export function cacheScore() {
+    preLevelScore = score
+    if (scoreElement) {
+        scoreElement.textContent = `Score: ${score}`
+    }
+}
+
+export function rewriteScore(){
+    score = preLevelScore;
     if (scoreElement) {
         scoreElement.textContent = `Score: ${score}`
     }
