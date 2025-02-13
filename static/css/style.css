@@ -46,7 +46,7 @@ html, body {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	background-color: white;
+	background: #2c3e50;
 	padding: 20px;
 	border-radius: 10px;
 	text-align: center;
@@ -58,14 +58,52 @@ html, body {
 }
 
 /* Buttons */
-#menuContainer, #gameOverContainer button {
-	padding: 10px 20px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-	border-radius: 5px;
-	margin: 5px;
+#menuContainer button, #gameOverContainer button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+    color: white;
+    transition: background 0.3s ease-in-out, transform 0.1s;
 }
+
+/* Continue Button (Pause Menu) */
+#continueButton {
+    background-color: green;
+}
+
+#continueButton:hover {
+    background-color: #1e7e34;
+}
+
+#continueButton:active {
+    transform: scale(0.95);
+}
+
+/* Restart Button (Pause Menu) */
+#restartGameButton {
+    background-color: red;
+}
+
+#restartGameButton:hover {
+    background-color: #a30d0d;
+}
+
+#restartGameButton:active {
+    transform: scale(0.95);
+}
+
+/* Game Over Buttons */
+#gameOverContainer button {
+    background-color: rgb(199, 8, 8);
+}
+
+#gameOverContainer button:hover {
+    background-color: #a30d0d;
+}
+
 
 #gameOverContainer button{
 	background-color: rgb(199, 8, 8);
@@ -77,25 +115,11 @@ html, body {
 	color:#ac9f9f;
 }
 
-
-/* Continue Button */
-#continueButton {
-	background-color: green;
-	color: white;
+#pauseText {
+	font-weight: bold;
+	color:#f7f4f4;
 }
 
-
-/* Restart Level Button */
-#restartLevelButton {
-    background-color: orange;
-    color: white;
-}
-
-/* Restart Game Button */
-#restartGameButton {
-	background-color: red;
-	color: white;
-}
 
 #scoreDisplay, #timerDisplay, #pauseButton, #livesDisplay{
     position: absolute;
@@ -126,4 +150,121 @@ html, body {
 	left: 50%;
 	top: 25%;
 	background: rgb(248, 117, 117);
+	border: none;
+}
+
+#infoContainer {
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    background: #2c3e50;
+    color: #ecf0f1;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+}
+
+#nameInput {
+    width: 50ch;
+    padding: 12px;
+    font-size: 16px;
+    margin: 10px 0;
+    border: 2px solid #1abc9c;
+    border-radius: 6px;
+    background: #34495e;
+    color: #ecf0f1;
+    outline: none;
+    text-align: center;
+}
+
+#nameInput::placeholder {
+    color: #f1c40f;
+    opacity: 0.8;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+#nameInput:focus {
+    border-color: #e67e22;
+}
+
+#submitButton {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+#submitButton:hover {
+    background: #c0392b;
+}
+
+#submitButton:active {
+    transform: scale(0.95);
+}
+
+
+
+#scoreboard {
+    width: 50%;
+    margin: 40px auto;
+    padding: 20px;
+    background: #2c3e50;
+    color: #ecf0f1;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+#scoreList {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#scoreList li {
+    background: #34495e;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 18px;
+    transition: transform 0.2s ease-in-out;
+}
+
+#scoreList li:hover {
+    transform: scale(1.05);
+    background: #1abc9c;
+    color: #2c3e50;
+}
+
+#pagination {
+    margin-top: 20px;
+}
+
+.scoreboardButton {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.scoreboardButton:disabled {
+    background: #7f8c8d;
+    cursor: not-allowed;
+}
+
+.scoreboardButton:hover:not(:disabled) {
+    background: #c0392b;
 }

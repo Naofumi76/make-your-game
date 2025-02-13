@@ -37,7 +37,7 @@ function showGameOverScreen() {
     // Game Over message
     let gameOverMessage = document.createElement('h1');
     gameOverMessage.textContent = 'Game Over!';
-    gameOverMessage.style.color = 'black';
+    gameOverMessage.style.color = 'red';
 
     let nextLvlButton = document.createElement('button');
     if (currentLevel === maxLevel) {
