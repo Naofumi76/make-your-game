@@ -21,16 +21,16 @@ export async function loadLevel(levelNumber) {
 	if (levelNumber === 1) {
 		resetLives();
 	} else if (levelNumber === currentLevel + 1){ addOneLife(); }
-	currentLevel = levelNumber;
 	const container = document.getElementById("gameContainer");
 	container.innerHTML = "";
 	console.log(currentLevel);
 	cacheScore();
 	
-	createDialogueOverlay(getDataImg()[currentLevel][0],
-	getDataImg()[currentLevel][1],
-		data[currentLevel])
-
+	createDialogueOverlay(getDataImg()[currentLevel-1][0],
+	getDataImg()[currentLevel-1][1],
+	data[levelNumber-1])
+	
+	currentLevel = levelNumber;
 	let ballInstance;
 	const response = await fetch("./internal/game/levels.json"); // Load JSON  file
 	const dataResponse = await response.json(); // Parse JSON

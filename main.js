@@ -26,10 +26,6 @@ async function initGame() {
     await loadDialogues();
     console.log(data)
 
-    createDialogueOverlay("static/images/character1.png",
-    "static/images/character2.png",
-    data[0])
-
     addScore();
     loadLevel(1);
     addTimer();
