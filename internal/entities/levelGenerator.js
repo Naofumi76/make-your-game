@@ -102,7 +102,7 @@ export async function loadLevel(levelNumber) {
 			} else if (part.startsWith("gap-")) {
 				let gapSize = parseInt(part.split("-")[1], 10);
 				x += gapSize * brickWidth;
-			} else if ( part.startsWith("unbreakable-") ){
+			} else if ( part.startsWith("u-") ){
 				let nbrOfBricks = parseInt(part.split("-")[1], 10);
 				for (let k = 0; k < nbrOfBricks; k++){
 					let brick = document.createElement("div");
