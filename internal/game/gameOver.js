@@ -1,6 +1,7 @@
-import { setIsPaused, setGameIsOver } from "../utils/utils.js";
+import { setIsPaused, setGameIsOver, dataLooseWin, getDataImg } from "../utils/utils.js";
 import { ball, currentLevel, loadLevel, maxLevel } from "../entities/levelGenerator.js";
-import { getInformations, score, preLevelScore, rewriteScore } from "./score.js";
+import { getInformations, score, preLevelScore, rewriteScore, scoreRequired } from "./score.js";
+import { createDialogueOverlay } from "./historyOverlay.js";
 export function gameOver() {
     setIsPaused(true); // Pause the game when the game over condition is met
     setGameIsOver(true);
@@ -39,16 +40,7 @@ function showGameOverScreen() {
     gameOverMessage.textContent = 'Game Over!';
     gameOverMessage.style.color = 'red';
 
-    let nextLvlButton = document.createElement('button');
-    if (currentLevel === maxLevel) {
-        nextLvlButton.textContent = 'Scoreboard';
-        nextLvlButton.addEventListener('click', getInformations);
-    } else {
-        nextLvlButton.textContent = 'Next Lvl';
-        let temp = currentLevel + 1
-        nextLvlButton.addEventListener('click',() => loadLevel(temp));
-    }
-
+    
     // Restart button
     let restartButton = document.createElement('button');
     restartButton.textContent = 'Restart game';
@@ -61,12 +53,37 @@ function showGameOverScreen() {
     // Append elements
     gameOverContainer.appendChild(gameOverMessage);
     gameOverContainer.appendChild(document.createElement('br'));
-    gameOverContainer.appendChild(nextLvlButton);
     gameOverContainer.appendChild(restartButton);
     gameOverContainer.appendChild(restartLevelButton);
 
     gameOverOverlay.appendChild(gameOverContainer);
     gameContainer.appendChild(gameOverOverlay);
+
+    if (currentLevel === maxLevel) {
+        let nextLvlButton = document.createElement('button');
+        nextLvlButton.textContent = 'Scoreboard';
+        nextLvlButton.addEventListener('click', getInformations);
+        
+        gameOverContainer.appendChild(nextLvlButton);
+
+        createDialogueOverlay(getDataImg()[0][0],
+            getDataImg()[0][0],
+            dataLooseWin[1])
+
+    } else if(score >= scoreRequired[currentLevel]) {
+        
+        let nextLvlButton = document.createElement('button');
+        nextLvlButton.textContent = 'Next Lvl';
+        let temp = currentLevel + 1
+        nextLvlButton.addEventListener('click',() => loadLevel(temp));
+        gameOverContainer.appendChild(nextLvlButton);     
+    } else{
+        createDialogueOverlay(getDataImg()[0][0],
+            getDataImg()[0][0],
+            dataLooseWin[0])
+        
+    }
+
 
     gameOverOverlay.style.display = 'block';
 }

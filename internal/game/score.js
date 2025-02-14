@@ -1,6 +1,9 @@
 import { initialTimer, getTimer } from "./timer.js"
 export let score = 0;
 export let preLevelScore = 0;
+export let scoreRequired = [0,500,1000,1500,2000,2500,3000,3500,4000,4500]
+
+
 let scoreElement
 let currentPage = 1 // Track current page
 

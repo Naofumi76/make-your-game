@@ -26,10 +26,18 @@ export async function loadLevel(levelNumber) {
 	console.log(currentLevel);
 	cacheScore();
 	
-	createDialogueOverlay(getDataImg()[currentLevel-1][0],
-	getDataImg()[currentLevel-1][1],
-	data[levelNumber-1])
-	
+	if (levelNumber ===1){
+		createDialogueOverlay(getDataImg()[currentLevel-1][0],
+		getDataImg()[0][1],
+		data[levelNumber-1])
+		
+	} else {
+		createDialogueOverlay(getDataImg()[currentLevel-1][0],
+		getDataImg()[currentLevel][1],
+		data[levelNumber-1])
+	}
+
+
 	currentLevel = levelNumber;
 	let ballInstance;
 	const response = await fetch("./internal/game/levels.json"); // Load JSON  file

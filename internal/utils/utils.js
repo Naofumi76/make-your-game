@@ -4,6 +4,7 @@ export let gameIsOver = false;
 export let gameInterval = null;
 
 export let data = [];
+export let dataLooseWin = [];
 
 
 export function getDataImg(){
@@ -21,7 +22,8 @@ export function getDataImg(){
 export async function loadDialogues() {
     const response = await fetch("./static/dialogs/dialogs.json"); // Load JSON file
     data = await response.json(); // Parse and assign the data
-    console.log("Dialogues loaded successfully: ", data);
+    const responseLoose = await fetch("./static/dialogs/loose_win.json"); // Load JSON file
+    dataLooseWin = await responseLoose.json(); // Parse and assign the data
 }
 
 // If you need to update these values from other files, you can create setter functions:
