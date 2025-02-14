@@ -18,6 +18,9 @@ const colors = ["gray", "green", "greenyellow", "yellow", "orange", "orangered",
 
 export async function loadLevel(levelNumber) {
 
+	ball.forEach(balls => {
+		balls.removeBall()
+	});
 	if (levelNumber === 1) {
 		resetLives();
 	} else if (levelNumber === currentLevel + 1){ addOneLife(); }
