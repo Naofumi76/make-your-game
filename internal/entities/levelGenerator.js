@@ -77,7 +77,7 @@ export async function loadLevel(levelNumber) {
 	level.rowPattern.forEach((pattern, rowIndex) => {
 		let totalBricks = pattern.filter(item => typeof item === "number").reduce((a, b) => a + b, 0);
 		for (let i = 0; i < pattern.length; i++) {
-			if (typeof pattern[i] === "string" && (pattern[i].startsWith("unbreakable-") || pattern[i].startsWith("gap-"))){totalBricks += parseInt(pattern[i].split("-")[1], 10);}
+			if (typeof pattern[i] === "string" && (pattern[i].startsWith("u-") || pattern[i].startsWith("gap-"))){totalBricks += parseInt(pattern[i].split("-")[1], 10);}
 		}
 		let totalRowWidth = totalBricks * brickWidth;
 		let offsetX = (containerWidth - totalRowWidth) / 2;

@@ -9,10 +9,10 @@
 				[3, "gap-2", 3],
 				[4],
 				[5, "gap-4", 2],
-				["unbreakable-15"],
+				["u-15"],
 				[],
 				[11],
-				[2, "unbreakable-2", 2]
+				[2, "u-2", 2]
 			],
 			"specialTileChance": 20
 		},
@@ -25,7 +25,7 @@
 				[1, "gap-1", 1, "gap-1", 1, "gap-1", 1, "gap-1", 1, "gap-2", 1,  "gap-1", 1, "gap-1", 1, "gap-1", 1, "gap-1", 1],
 				["gap-1", 1, "gap-1", 1, "gap-5",  1, "gap-2", 1,  "gap-5", 1, "gap-1", 1, "gap-1"],
 				[1, "gap-1", 1, "gap-1", 1, "gap-3", 1, "gap-2", 1,  "gap-3", 1, "gap-1", 1, "gap-1", 1],
-				["unbreakable-5", "gap-3", "unbreakable-4", "gap-3","unbreakable-5"],
+				["u-5", "gap-3", "u-4", "gap-3","u-5"],
 				[7, "gap-6", 7],
 				[1, "gap-3", 2, "gap-8", 2, "gap-3",1],
 				[1, "gap-1", 1, "gap-1", 1, "gap-10", 1, "gap-1", 1, "gap-1", 1],
@@ -40,13 +40,13 @@
 			"rowPattern": [
 				[],
 				[],
-				["unbreakable-1", 1, "gap-1", 2, "gap-1", 3, "gap-1", 2, "gap-1", 1, "unbreakable-1"],
+				["u-1", 1, "gap-1", 2, "gap-1", 3, "gap-1", 2, "gap-1", 1, "u-1"],
 				[ 2, "gap-1", 2, "gap-1", 1, "gap-1", 2, "gap-1", 2],
-				["unbreakable-1", 1, "gap-1", 2, "gap-1", 2, "gap-1", 1, "unbreakable-1"],
+				["u-1", 1, "gap-1", 2, "gap-1", 2, "gap-1", 1, "u-1"],
 				[2, "gap-1", 3, "gap-1",  2],
-				["unbreakable-1", 1, "gap-1", 1, "gap-1",  1, "unbreakable-1"],
+				["u-1", 1, "gap-1", 1, "gap-1",  1, "u-1"],
 				[2, "gap-1", 2],
-				["unbreakable-1", 1, "unbreakable-1"],
+				["u-1", 1, "u-1"],
 				[1]
 			],
 			"specialTileChance": 20
@@ -115,18 +115,18 @@
 				[12, "gap-6", 12],
 				[13, "gap-4", 13],
 				[14, "gap-2", 14],
-				[13,"unbreakable-1","gap-2","unbreakable-1",13],
-				[12,"unbreakable-1","gap-4","unbreakable-1",12],
-				[12,"unbreakable-1","gap-4","unbreakable-1",12],
-				[11,"unbreakable-1","gap-6","unbreakable-1",11],
-				[11,"unbreakable-1","gap-6","unbreakable-1",11],
-				[11,"unbreakable-1","gap-6","unbreakable-1",11],
-				[10,"unbreakable-1","gap-8","unbreakable-1",10],
-				[10,"unbreakable-1","gap-8","unbreakable-1",10],
-				[10,"unbreakable-1","gap-8","unbreakable-1",10],
-				[10,"unbreakable-1","gap-8","unbreakable-1",10],
-				[9,"unbreakable-1","gap-10","unbreakable-1",9],
-				[9,"unbreakable-1","gap-10","unbreakable-1",9]
+				[13,"u-1","gap-2","u-1",13],
+				[12,"u-1","gap-4","u-1",12],
+				[12,"u-1","gap-4","u-1",12],
+				[11,"u-1","gap-6","u-1",11],
+				[11,"u-1","gap-6","u-1",11],
+				[11,"u-1","gap-6","u-1",11],
+				[10,"u-1","gap-8","u-1",10],
+				[10,"u-1","gap-8","u-1",10],
+				[10,"u-1","gap-8","u-1",10],
+				[10,"u-1","gap-8","u-1",10],
+				[9,"u-1","gap-10","u-1",9],
+				[9,"u-1","gap-10","u-1",9]
 			],
 			"specialTileChance": 20
 		}
