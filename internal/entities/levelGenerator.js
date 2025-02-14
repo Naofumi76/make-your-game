@@ -64,8 +64,8 @@ export async function loadLevel(levelNumber) {
 
 	
 
-	const brickWidth = Math.floor(gameContainer.offsetWidth / level.gridSize.columns) - 1;
-	const brickHeight = Math.floor(gameContainer.offsetHeight / level.gridSize.rows) - 1;
+	const brickWidth = Math.floor(gameContainer.offsetWidth / level.gridSize.columns);
+	const brickHeight = Math.floor(gameContainer.offsetHeight / level.gridSize.rows);
 	const containerWidth = gameContainer.offsetWidth;
 	
 	console.log("gameContainer width: " +  gameContainer.offsetWidth + " / nbr of bricks: " + level.gridSize.columns + " = " + brickWidth )
@@ -120,8 +120,8 @@ function createBrick (brick, health, brickWidth, brickHeight) {
 	brick.setAttribute("health", health);
 	if (health < 0) {health = 0;}
 	brick = updateBrickColor(brick, health);
-	brick.style.height = `${brickHeight}px`;
-	brick.style.width = `${brickWidth}px`;
+	brick.style.height = `${brickHeight-2}px`;
+	brick.style.width = `${brickWidth-2}px`;
 	return brick;
 }
 
